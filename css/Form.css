@@ -1,0 +1,1578 @@
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Red Hat Display", sans-serif;
+    overflow: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: #10002B;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+/* Progress CSS ---------------------------*/
+
+.progressContainer {
+    width: 100%;
+    background: none;
+    height: 15vh;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    z-index: 900;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 160px;
+}
+
+.progressMain{
+    width: 100%;
+    border-top: 0px solid #EBEBEB;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 80px;
+    gap: 20px;
+    background: #10002b;
+}
+
+.progress{
+    width: 50%;
+    border-radius: 1000px;
+    height: 6px;
+}
+
+.progressTitle{
+    width: 10%;
+    text-align: right;
+    
+}
+
+.progressTitle p{
+    color: white;
+    font-weight: 500;
+    font-size: 13px;
+    margin-bottom: 0;
+}
+
+.progress-bar{
+    background: #6A0FFF;
+}
+
+.resetForm{
+    width: fit-content;
+    padding: 12px 15px;
+    color: white;
+    font-weight: 500;
+    font-size: 13.5px;
+    background: #6A0FFF;
+    border-radius: 1000px;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.resetForm:hover {
+    color: #fff;
+    background: #4A0FC7;
+}
+
+.whatsappForm{
+    background: #0AAA8D;
+    padding: 12px 15px;
+    border-radius: 1000px;
+    color: #fff;
+    font-size: 13.5px;
+    font-weight: 500;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: 0.3s ease;
+    outline: none;
+    border: none;
+}
+
+.whatsappForm:hover{
+    color: #fff;
+    background: #187774;
+}
+
+.whatsappIcon{
+    fill: #fff;
+    transition: 0.3s ease;
+}
+
+.whatsappForm:hover .whatsappIcon{
+    fill: #fff;
+}
+
+#whatsappProgress {
+    opacity: 0;
+}
+
+.viewWhatsappProgress {
+    opacity: 1!important;
+}
+
+/* Responsive PCN Phone*/
+
+@media(max-width: 1100px) {
+    .progressContainer {
+        width: 100%;
+        background: none;
+        height: 10vh;
+        position: fixed;
+        bottom: 0px;
+        left: 0px;
+        z-index: 900;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 0px 0px;
+        display: none;
+    }
+}
+@media(max-width: 450px) {
+
+    .progressContainer {
+        width: 100%;
+        background: none;
+        height: 10vh;
+        position: fixed;
+        bottom: 0px;
+        left: 0px;
+        z-index: 900;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 0px 0px;
+        display: none;
+    }
+
+    .progressMain{
+        width: 100%;
+        border-top: 0px solid #EBEBEB;
+        border-radius: 25px;
+        transition: all 0.3s ease;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 40px 80px;
+        gap: 20px;
+        background: #10002b;
+    }
+
+    .progress{
+        width: 50%;
+        border-radius: 1000px;
+        height: 6px;
+    }
+
+    .progressTitle{
+        width: 10%;
+        text-align: right;
+
+    }
+
+    .progressTitle p{
+        color: white;
+        font-weight: 500;
+        font-size: 13px;
+        margin-bottom: 0;
+    }
+
+    .progress-bar{
+        background: #6A0FFF;
+    }
+
+    .resetForm{
+        width: fit-content;
+        padding: 12px 15px;
+        color: white;
+        font-weight: 500;
+        font-size: 13.5px;
+        background: #6A0FFF;
+        border-radius: 1000px;
+        transition: all 0.3s ease;
+        text-align: center;
+    }
+
+    .resetForm:hover {
+        color: #fff;
+        background: #4A0FC7;
+    }
+
+    .whatsappForm{
+        background: #0AAA8D;
+        padding: 12px 15px;
+        border-radius: 1000px;
+        color: #fff;
+        font-size: 13.5px;
+        font-weight: 500;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        transition: 0.3s ease;
+    }
+
+    .whatsappForm:hover{
+        color: #fff;
+        background: #187774;
+    }
+
+    .whatsappIcon{
+        fill: #fff;
+        transition: 0.3s ease;
+    }
+
+    .whatsappForm:hover .whatsappIcon{
+        fill: #fff;
+    }
+}
+
+    /* Menu CSS ---------------------------*/
+
+.menuMain{
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 10002;
+    width: 100%;
+    height: 100vh;
+    background: rgba(33,33,33,.35);
+    display: flex;
+    justify-content: end;
+    padding-top: 80px;
+    display: none;
+}
+
+.menuContainer{
+    width: 350px;
+    height: fit-content;
+    background: #fff;
+    margin: 25px;
+    display: flex;
+    align-items: center;
+    border-radius: 35px 35px 35px 35px;
+    padding: 40px 40px;
+    flex-direction: column;
+    gap: 10px;
+    position: relative;
+}
+
+.menuContainer span{
+    color: rgba(33,33,33,0.35);
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.menuLink{
+    font-size: 18px;
+    font-weight: 500;
+    color: rgba(33,33,33,0.5);
+    transition: all 0.3s ease;
+}
+
+.menuLink:hover{
+    font-size: 18px;
+    font-weight: 500;
+    color: #10002b;
+}
+
+.menuActions{
+    width: 100%;
+}
+
+.menuCTA {
+    font-weight: 500;
+    border-radius: 1000px;
+    background: #6A0FFF;
+    color: #fff;
+    display: flex;
+    gap: 20px;
+    font-size: 16px;
+    justify-content: center;
+    transition: all 0.3s ease;
+    width: 100%;
+    cursor: pointer;
+    margin-top: 10px;
+    padding: 15px 0;
+    padding-right: 12px;
+    padding-left: 12px;
+}
+
+.menuCTA:hover{
+    background: #4A0FC7;
+    color: #fff
+}
+
+.formCTA {
+    padding: 20px 50px;
+    font-weight: 500;
+    border-radius: 1000px;
+    background: #6A0FFF;
+    color: #fff;
+    display: flex;
+    gap: 20px;
+    font-size: 16px;
+    justify-content: center;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.widthTotale{
+    width: 100%;    
+    padding: 18px 15px;
+    font-size: 15px;
+}
+
+
+    
+
+
+/* PCN CSS ---------------------------*/
+
+.pcnMain.active {
+    display: block;
+    opacity: 0;
+}
+
+.pcnMain {
+    display: none;
+    opacity: 0;
+    border-radius: 35px;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+.pcnContainer {
+    height: 700px;
+    width: 400px;
+    background: #E4E2F5;
+    margin: 25px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 35px 35px 35px 35px;
+    -webkit-box-shadow: 0px 0px 20px -4px #1c1f23;
+    -moz-box-shadow: 0px 0px 20px -4px #1c1f23;
+    -o-box-shadow: 0px 0px 20px -4px #1c1f23;
+    box-shadow: 0px 0px 20px -4px #1c1f23;
+}
+
+.pcnText {
+    padding: 35px;
+    background: #6A0FFF;
+    border-radius: 31px 31px 0px 0px;
+}
+
+.pcnTextHeader {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.pcnIcon {
+    padding: 5px 10px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.pcnIcon:hover {
+    background: #6A0FFF;
+    border-radius: 1000px;
+}
+
+.pcnTextContent {
+    margin-top: 3rem;
+    color: #f7f7f7;
+    text-align: left;
+}
+
+.pcnTextContentTitle {
+    font-size: 35px;
+    font-weight: 500;
+}
+
+.pcnTextContentSubtitle {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.pcnForm {
+    padding: 18px 18px;
+}
+
+.pcnForm form{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.formRow{
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+.textInput{
+    padding: 18px 22px;
+    border-radius: 16px;
+    border: 1px solid #f7f7f7;
+    width: 100%;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+textarea{
+    padding: 18px 22px;
+    font-size: 14px;
+    border-radius: 16px;
+    font-weight: 500;
+    border: 1px solid #f7f7f7;
+    width: 100%;
+    transition: all 0.3s ease;
+    resize: none;
+}
+
+.textInput::placeholder , textarea::placeholder{
+    color: #10002b;
+}
+
+.textInput:focus-visible, textarea:focus-visible{
+    outline: none;
+    border: 1px solid #6A0FFF;
+    color: #6A0FFF;
+}
+
+.textInput:focus-visible::placeholder,  textarea:focus-visible::placeholder{
+    color: #6A0FFF;
+}
+
+.pcnCTA{
+    width: 100%;
+    background: #4A0FC7;
+    cursor: pointer;
+    color: #f7f7f7;
+    padding: 14px;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+}
+
+.pcnCTA:hover{
+    color: #f7f7f7;
+    background: #6A0FFF;
+
+}
+
+/* Responsive PCN Phone*/
+
+@media(max-width: 450px) {
+
+    .pcnMain {
+        border-radius: 0px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+    }
+
+    .pcnContainer {
+        height: 100vh;
+        width: 100%;
+        background: #E4E2F5;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        border-radius: 0px;
+    }
+
+    .pcnText {
+        padding: 30px;
+        background: #6A0FFF;
+        border-radius: 0px;
+    }
+
+    .pcnTextContent{
+        margin-top: 30px;
+    }
+
+    .textInput{
+        padding: 16px 20px;
+    }
+
+    .textarea{
+        padding: 16px 20px;
+    }
+}
+
+.navBar {
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 80px;
+    align-items: center;
+    position: fixed;
+    z-index: 998;
+    top: 0;
+    right: 0;
+    left: 0;
+    background: #fff;
+    border-radius: 0 0 30px 30px;
+    background: none;
+    background: #10002b;
+    
+    
+}
+
+.navBarFAQ {
+    display: none;
+}
+
+.logoBianco{
+    display: block;
+}
+
+.logoNero {
+    display: none!important;
+}
+
+.navBarPCN {
+    display: none;
+}
+
+.footerFAQ {
+    display: none;
+}
+
+.navLinks {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    display: none;
+}
+
+.navLinks a:hover{
+    color: #10002b;
+}
+
+.navLinks a {
+    font-size: 13.5px;
+    font-weight: 500;
+    color: rgba(33,33,33,.35);
+    transition: all 0.3s ease;
+}
+
+.navCTA {
+    font-size: 13.5px;
+    font-weight: 500;
+    padding: 12px 15px;
+    background: #6A0FFF;
+    border-radius: 1000px;
+    color: #f7f7f7;
+    cursor: pointer;
+    display: flex;
+    gap: 10px;
+    transition: all 0.3s ease;
+}
+
+.navCTA img{
+    transition: all 0.3s ease;
+}
+
+.navCTA:hover img{
+    transform: rotate(-10deg) scale(1.1,1.1);
+}
+
+.navCTA:hover {
+    color: #ffffff;
+    background: #4A0FC7;
+}
+
+.toggle {
+    flex-direction: column;
+    gap: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 14px 10px;
+    border-radius: 1000px;
+    transition: all 0.3s ease;
+}
+
+.toggle:hover{
+    background: #FBF9FF;
+}
+
+.toggle:hover .line{
+    background: #10002b;
+}
+
+.footerPCN {
+    display: none;
+}
+
+.line {
+    height: 2px;
+    width: 20px;
+    background: #FBF9FF;
+    transition: all 0.3s ease;
+    
+}
+
+.navActions{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 25px;
+}
+
+/* Responsive Navbar Tablet*/
+
+@media(max-width: 1100px) {
+
+    .toggle {
+        display: flex;
+    }
+
+    .navLinks {
+        display: none;
+    }
+
+    .navCTA {
+        display: none;
+    }
+
+    .line {
+        background: #f7f7f7;
+    }
+
+    .navBar {
+        background-color: #10002B;
+        border-bottom-left-radius: 30px;
+        border-bottom-right-radius: 30px;
+    }
+
+    .logoBianco {
+        display: block;
+    }
+
+    .logoNero {
+        display: none;
+    }
+
+}
+
+/* Responsive Navbar Phone*/
+
+@media(max-width: 450px) {
+
+    .navBar {
+        padding: 18px 30px;
+    }
+
+    .navLogo {
+        width: 110px;
+    }
+    
+    .logoBianco{
+        display: block;
+    }
+    
+    .logoNero{
+        display: none;
+    }
+
+    .toggle {
+        display: flex;
+    }
+
+    .navLinks {
+        display: none;
+    }
+
+    .navCTA {
+        display: none;
+    }
+    
+}
+
+.formMain{
+    width: 100%;
+    height: 100vh;
+    background: white;
+    padding: 115px 80px;
+    position: fixed;
+    background: rgba(33,33,33,.05);
+    background: #10002b;
+}
+
+.formContainer{
+    width: 100%;
+    border-radius: 30px;
+    border: 0px solid #EBEBEB;
+    height: 100vh;
+    background: #fff;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    /*background: url(../img/FBG1.svg);*/
+    background-size: cover;
+    /*background-position: center center;*/
+}
+
+.formStep{
+    padding: 100px 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+}
+
+.stepText{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.stepTitle{
+    font-size: 50px;
+    font-weight: 600;
+    color: #10002b;
+}
+
+.stepSubtitle{
+    font-size: 16px;
+    font-weight: 400;
+    color: #10002b;
+}
+
+.stepContent{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+}
+
+.outViewTarga {
+    display: none !important;
+}
+
+#manualContent {
+    display: none;
+    min-width: 600px;
+}
+
+.onViewManual {
+    display: flex !important;
+    gap: 0;
+}
+
+.rowMarcaModello {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+
+}
+
+.manualContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+}
+
+.rowAnnoCilAli {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+    
+}
+
+.manualSelect {
+    background: #fff;
+    padding: 20px 20px 20px 30px;
+    border-radius: 1000px;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    border: 1px solid #E6E3EC;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.disabled{
+    background: rgba(33,33,33,.05);
+}
+
+.stepContentCap {
+    gap: 40px;
+}
+
+.stepContentContatti {
+    gap: 50px;
+}
+
+.targaContainer, .capContainer, .kmContainer {
+    background: #FBF9FF;
+    padding: 8px 8px 8px 30px;
+    border-radius: 1000px;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    border: 1px solid #fff;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.targaInput, .capInput, .kmInput{
+    outline: none;
+    border: 0;
+    background: none;
+    font-size: 15px;
+    color: #10002b;
+    text-transform: uppercase;
+}
+
+.targaInput::placeholder, .capInput::placeholder, .kmInput::placeholder{
+    color: rgba(33,33,33,.35);
+    text-transform: none;
+    
+}
+
+.nextStep{
+    background: #6A0FFF;
+    border: 0px solid #6A0FFF;
+    padding: 15px 30px;
+    border-radius: 1000px;
+    font-weight: 500;
+    font-size: 15px;
+    color: #ffffff;
+    transition: all 0.3s ease;
+} 
+
+.nextStep:hover{
+    background: #4A0FC7;
+    border: 0px solid #6A0FFF;
+    color: #ffffff;
+}
+
+.nextStep:disabled {
+    background: rgba(33,33,33,.05);
+    border: 0px solid #10002b;
+    border-radius: 1000px;
+    font-weight: 500;
+    font-size: 15px;
+    color: rgba(33,33,33,.35);
+    transition: all 0.3s ease;
+}
+
+.orSpan {
+    cursor: default;
+    font-size: 13px;
+    font-weight: 400;
+    color: rgba(33,33,33,.20);
+}
+
+.changeInput{
+    font-size: 16px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    color: rgba(33,33,33,.35);
+}
+
+.backStep{
+    font-size: 15px;
+    font-weight: 500;
+    color: rgba(33,33,33,.35);
+    transition: all 0.3s ease;
+}
+
+.backStep:hover{
+    color: #6A0FFF;
+    color: #10002b;
+}
+
+.changeInput:hover{
+    color: #6A0FFF;
+    color: #10002b;
+}
+
+.versionContainer{
+    background: #fff;
+    padding: 20px 20px 20px 30px;
+    border-radius: 1000px;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    border: 1px solid #E6E3EC;
+    min-width: 440px;
+    transition: all 0.3s ease;
+}
+
+.selectVersion{
+    outline: none;
+    border: 0;
+    background: none;
+    font-size: 15px;
+    color: rgba(33,33,33,.35);
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+
+.selectVersionColored{
+    color: #10002B;
+}
+
+.actionsForm{
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    align-items: center;
+}
+
+.statContainer{
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    width: auto;
+}
+
+.statChoise{
+    cursor: pointer;
+    background: #fff;
+    padding: 20px 20px 20px 30px;
+    border-radius: 1000px;
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    border: 1px solid #EBEBEB;
+    font-size: 15px;
+    font-weight: 400;
+    width: 200px;
+    transition: all 0.3s ease;
+}
+
+.statChoise label{
+    cursor: pointer;
+}
+
+input[type='radio'] {
+    accent-color: #6A0FFF;
+    transition: all 0.3s ease;
+}
+
+.statContainer2{
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+}
+
+.statChoise2{
+    cursor: pointer;
+    background: #fff;
+    padding: 20px 30px 20px 30px;
+    border-radius: 1000px;
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    border: 1px solid #EBEBEB;
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.statChoise2 label{
+    cursor: pointer;
+}
+
+.interniContainer{
+    background: #fff;
+    padding: 20px 20px 20px 30px;
+    border-radius: 1000px;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    border: 1px solid #EBEBEB;
+    min-width: 440px;
+    position: relative;
+}
+
+.interniInput{
+    outline: none;
+    border: 0;
+    background: none;
+    font-size: 15px;
+    color: #10002b;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+.interniInput::placeholder{
+    outline: none;
+    border: 0;
+    background: none;
+    font-size: 15px;
+    color: rgba(33,33,33,.35);
+    width: 100%;
+}
+
+
+.interniStep, .esterniStep{
+    gap: 50px;
+}
+
+::-webkit-file-upload-button {
+    background: black;
+    color: red;
+    padding: 1em;
+    display: none;
+}
+
+#FotoAuto{
+    font-weight: 500;
+    font-size: 13px;
+    transform: translateX(25%);
+    display: none;
+}
+
+.uploadOption{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.uploadButton{
+    cursor: pointer;
+    gap: 20px;
+    background: rgba(33,33,33,.05);
+    padding: 20px 30px 20px 30px;
+    font-weight: 500;
+    border-radius: 1000px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border: 0px solid #E6E3EC;
+    transition: all 0.3s ease;
+}
+
+.uploadButton:hover{
+    background: rgba(33,33,33,.1);
+}
+
+.contattoContainer{
+    background: #fff;
+    padding: 20px 20px 20px 30px;
+    border-radius: 1000px;
+    display: flex;
+    flex-direction: row;
+    border: 1px solid #EBEBEB;
+    min-width: 440px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.contattoInput{
+    outline: none;
+    border: 0;
+    background: none;
+    font-size: 15px;
+    color: #10002b;
+    width: 100%;
+}
+
+.contattoInput::placeholder{
+    color: rgba(33,33,33,.35);
+}
+
+.contattiGroup{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.contattiRow {
+    display: flex;
+    gap: 10px;
+}
+
+.br-tablet {
+    display: none;
+}
+
+.br-tablet-800 {
+    display: none;
+}
+
+.br-phone {
+    display: none;
+}
+
+
+.manualOption{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.incorrect {
+    border: 1px solid #F04759;
+}
+
+.correct {
+    border: 1px solid #6a0fff;
+}
+
+.statChoise:checked{
+    border: 1px solid #6a0fff;
+}
+
+.errorTarga{
+    color: #F04759;
+    font-size: 12px;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    display: none;
+    left: 0;
+    bottom: -35px;
+    transition: all 0.3s ease;
+}
+
+.errorGroup{
+    position: relative;
+}
+
+.errorContatti{
+    color: #F04759;
+    font-size: 12px;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    display: none;
+    left: 0;
+    bottom: -30px;
+    transition: all 0.3s ease;
+}
+
+.errorTargaOn{
+    display: block;
+}
+
+.uploadTextInorrect{
+    color: #F04759;
+}
+
+.numberUpload{
+    color: #10002b;
+    font-size: 12px;
+    width: 100%;
+    text-align: center;
+    display: block;
+    transition: all 0.3s ease;
+}
+
+.uploadTextCorrect{
+    color: #6A0FFF;
+}
+
+
+
+/* Responsive Form Tablet*/
+
+@media(max-width: 1100px) {
+    
+    .formMain {
+        padding: 0;
+        
+    }
+
+    .formContainer {
+        border-radius: 0;
+    }
+
+    .formStep {
+        align-items: center;
+        justify-content: center;
+    }
+
+    .stepTitle {
+        text-align: center;
+    }
+
+    .stepSubtitle {
+        text-align: center;
+    }
+
+    .contattiRow {
+        flex-direction: column;
+    }
+
+    .br-tablet {
+        display: block;
+    }
+
+    .br-tablet-800 {
+        display: none;
+    }
+
+    .br-phone {
+        display: none;
+    }
+
+}
+
+@media(max-width: 810px) {
+
+    .br-tablet-800 {
+        display: block;
+    }
+
+    .br-phone {
+        display: none;
+    }
+}
+
+
+/* Responsive Form Phone*/
+
+@media(max-width: 450px) {
+
+    .formContainer {
+        overflow-x: hidden;
+       
+    }
+
+    .br-phone {
+        display: block;
+    }
+
+    .stepTitle {
+        font-weight: 500;
+        font-size: 35px;
+        text-align: center;
+    }
+
+    .stepSubtitle {
+        font-size: 15px;
+        text-align: center;
+    }
+
+    .br-tablet {
+        display: none;
+    }
+
+    .br-tablet-800 {
+        display: none;
+    }
+
+
+    .formStep {
+        padding: 100px 30px 30px;
+        justify-content: center;
+    }
+
+    .stepText {
+        gap: 10px;
+    }
+
+    .stepContent {
+        width: 100%;
+        gap: 15px;
+        margin: 5px;
+        
+    }
+
+    .targaContainer, .capContainer, .kmContainer{
+        flex-direction: column;
+        border-radius: 48px;
+        padding: 30px;
+        gap: 25px;
+        width: 100%;
+    }
+
+    .targaInput, .capInput, .kmInput{
+        text-align: center;
+    }
+
+    .targaInput::placeholder, .capInput::placeholder, .kmInput::placeholder{
+        text-align: center;
+    }
+
+    #manualContent {
+        gap: 0;
+        min-width: 100%;
+    }
+
+    .rowMarcaModello {
+        gap: 0;
+    }
+    
+    .rowAnnoCilAli {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .manualContainer {
+        gap: 10px;
+    }
+
+    .versionContainer {
+        min-width: auto;
+        width: 100%;
+    }
+
+    .actionsForm {
+        flex-direction: column-reverse;
+        gap: 15px;
+    }
+
+    .statContainer, .statContainer2 {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .statChoise, .statChoise2 {
+        padding: 22px;
+        width: 100%;
+    }
+
+    .interniContainer {
+        padding: 20px;
+        min-width:  auto;
+        width: 100%;
+    }
+    
+    .interniStep, .esterniStep{
+        gap: 50px;
+    }
+
+    .interniInput::placeholder {
+        content: "prova";
+    }
+
+    
+
+    .contattiGroup {
+        min-width: auto;
+        width: 100%;
+        justify-content: center;
+
+    }
+
+    .contattiNomeCognome {
+        display: flex;
+        flex-direction: row;
+        gap: 0;
+    }
+
+    .contattoContainer {
+        min-width: auto; 
+        width: 100%;
+        padding: 22px;
+    }
+
+    .contattoNome {
+        border-bottom-right-radius: 0;
+        border-top-right-radius: 0;
+    }
+
+    .contattoCognome {
+        border-left: 0;
+        border-bottom-left-radius: 0;
+        border-top-left-radius: 0;
+    }
+
+    .errorTarga{
+        bottom: -30px;
+    }
+
+    .manualOption{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    
+    .stepContentContatti{
+        gap: 40px;
+    }
+    
+    .errorContatti{
+        bottom: -25px
+    }
+}
+
+
+/* POP-UP CAP -----------------------*/
+
+.pop-up-CAP-Main {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    height: 100vh;
+    width: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: none;
+    transition: all 1s ease;
+}
+
+.displayPopUp {
+    display: flex;
+}
+
+.pop-up-CAP{
+    width: 400px;
+    height: 500px;
+    background: #f7f7f7;
+    border-radius: 35px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: end;
+    position: relative;
+}
+
+.close-pop-up-CAP-container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    position: absolute;
+    top: 30px;
+    right: 30px;
+}
+
+.close-pop-up-CAP{
+    padding: 12px 12px;
+    background: rgba(33,33,33,.05);
+    border-radius: 1000px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-pop-up-CAP:hover {
+    background: rgba(33,33,33,.1);
+}
+
+.pop-up-CAP-text{
+    color: #10002b;
+    text-align: center;
+    position: relative;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.image-pop-up-CAP-container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pop-up-CAP-text h3{
+    font-size: 30px;
+    font-weight: 500;
+}
+
+.pop-up-CAP-text p{
+    font-size: 15px;
+    color: #10002b;
+    line-height: 1.65;
+}
+
+.pop-up-CAP-actions{
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.action-CAP{
+    width: 100%;
+    padding:  14px 0;
+    padding-right: 12px;
+    padding-left: 12px;
+    background: #6A0FFF;
+    color: #f7f7f7;
+    border-radius: 1000px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.action-CAP-home{
+    background: rgba(33,33,33,.05);
+    color: #10002b;
+}
+
+.action-CAP-update:hover{
+    color: #f7f7f7;
+    background: #4A0FC7;
+}
+
+.action-CAP-home:hover{
+    color: #10002b;
+    background: rgba(33,33,33,.1);
+}
+
+/* Responsive POP-UP Phone*/
+
+@media(max-width: 450px) {
+    .pop-up-CAP-Main {
+        align-items: end;
+    }
+
+    .pop-up-CAP {
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+}
