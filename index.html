@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
           rel="stylesheet">
-    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="/css/Form.css"/>
 
 
@@ -30,7 +30,7 @@
         <a class="menuLink" href="">Come funziona?</a>
         <a class="menuLink" href="">Domande frequenti</a>
         <div class="menuActions">
-            <a class="menuCTA" >Valuta la tua auto</a>
+            <a class="menuCTA">Valuta la tua auto</a>
         </div>
     </div>
 </div>
@@ -39,8 +39,8 @@
     <div class="pcnContainer">
         <div class="pcnText">
             <div class="pcnTextHeader">
-                <span class="pcnLogo"><img src="/img/LogoBianco.svg" width="120"/></span>
-                <span class="pcnIcon"><img src="/img/close.svg" width="15"/></span>
+                <span class="pcnLogo"><img src="/img/LogoBianco.svg" alt="logo" width="120"/></span>
+                <span class="pcnIcon"><img src="/img/close.svg" width="15" alt="closeIcon"/></span>
             </div>
 
             <div class="pcnTextContent">
@@ -50,14 +50,14 @@
         </div>
 
         <a href="https://wa.me/393205612848?text=" class="pcnCTA" target="_blank"><img src="/img/whatsapp.svg"
-                                                                                       width="20"/><span>Contattaci ora con Whatsapp</span></a>
+                                                                                       width="20" alt="whatsappIcon"/><span>Contattaci ora con Whatsapp</span></a>
 
         <div class="pcnForm">
 
-            <form asp-controller="Layout" asp-action="SendContactUsMessage" method="POST" role="form">
+            <form method="POST" role="form">
                 <div class="formRow">
-                    <input asp-for="ContactUsMessage.FirstName" class="textInput" type="text" placeholder="Nome"/>
-                    <input asp-for="ContactUsMessage.LastName" class="textInput" type="text" placeholder="Cognome"/>
+                    <input id="ContactUsFirstNameInput" class="textInput" type="text" placeholder="Nome"/>
+                    <input id="ContactUsLastNameInput" class="textInput" type="text" placeholder="Cognome"/>
                 </div>
 
                 <input asp-for="ContactUsMessage.Mail" class="textInput" type="email" placeholder="Email"/>
@@ -68,8 +68,6 @@
             </form>
 
         </div>
-
-
     </div>
 </div>
 
@@ -79,10 +77,10 @@
                                                                  width="110" class="navLogo" alt=""></a>
 
     <div class="navLinks">
-        <a asp-controller="HowItWorks">Come funziona?</a>
+        <a >Come funziona?</a>
         <a href="#">Sei una concessionaria?</a>
-        <a asp-controller="FAQ">Domande frequenti</a>
-        <a asp-controller="Blog">Il nostro blog</a>
+        <a>Domande frequenti</a>
+        <a>Il nostro blog</a>
     </div>
 
     <div class="navActions">
@@ -123,7 +121,7 @@
         <!-- POP UP CAP-->
 
         <div class="pop-up-CAP-Main" id="popUpCap">
-            <div class="pop-up-CAP" id="">
+            <div class="pop-up-CAP">
                 <div class="close-pop-up-CAP-container">
                     <a class="close-pop-up-CAP" onclick="closePopUp()">
                         <svg width="15" height="15" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -187,39 +185,13 @@
 
             <div class="formMain">
                 <div class="formContainer">
+
+
                     <div class="formStep step-1">
                         <div class="stepText">
                             <h1 class="stepTitle">Iniziamo con la valutazione</h1>
-                            <p class="stepSubtitle">Inserisci la tua targa o compila<br class="br-phone"/> manualmente
-                                con i dati dell’auto.</p>
+                            <p class="stepSubtitle">Inserisci i dati della tua auto.</p>
                         </div>
-
-                        <!-- Targa -->
-                        <div class="stepContent" id="targaContent">
-                            <div class="targaContainer" id="targaContainer">
-                                <input asp-for="LicensePlate" class="targaInput" id="input-1" onkeyup="success1()"
-                                       type="text" maxlength="7" placeholder="Inserisci la targa"/>
-                                <button type="button" class="nextStep ns-1" id="ns-1" href="#step-2" disabled>Prossimo
-                                    step
-                                </button>
-                                <span id="errorTarga" class="errorTarga">Targa non valida</span>
-                            </div>
-
-                            <div class="manualOption">
-                                <span class="orSpan">oppure</span>
-                                <a class="changeInput" href="#" onclick="changeInputModeToManual()">Seleziona veicolo
-                                    manualmente</a>
-                            </div>
-                            <a class="whatsappForm widthTotale" href="">
-                                <svg class="whatsappIcon" fill="#f7f7f7" width="18" height="18" viewBox="0 0 64 64"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M54 9.90039C48.2 4.10039 40.3 0.900391 32.2 0.900391C15.2 0.900391 1.3 14.7004 1.3 31.7004C1.3 37.2004 2.7 42.4004 5.4 47.2004L1 63.1004L17.5 58.9004C22 61.3004 27.1 62.7004 32.3 62.7004C49.2 62.6004 63 48.8004 63 31.7004C63 23.5004 59.8 15.8004 54 9.90039ZM32.1 57.4004C27.6 57.4004 22.9 56.1004 19 53.7004L18 53.1004L8.3 55.6004L11 46.2004L10.4 45.2004C7.9 41.1004 6.5 36.3004 6.5 31.5004C6.5 17.4004 17.9 6.00039 32.1 6.00039C38.9 6.00039 45.3 8.70039 50.1 13.5004C54.9 18.3004 57.6 24.8004 57.6 31.7004C57.8 46.0004 46.2 57.4004 32.1 57.4004ZM46.2 38.2004C45.4 37.8004 41.7 35.9004 40.8 35.8004C40.1 35.5004 39.5 35.4004 39.1 36.2004C38.7 37.0004 37.1 38.6004 36.7 39.2004C36.3 39.6004 35.9 39.8004 35 39.3004C34.2 38.9004 31.8 38.2004 28.8 35.4004C26.5 33.4004 24.9 30.9004 24.6 30.0004C24.2 29.2004 24.5 28.9004 25 28.4004C25.4 28.0004 25.8 27.6004 26.1 27.0004C26.5 26.6004 26.5 26.2004 26.9 25.7004C27.3 25.3004 27 24.7004 26.8 24.3004C26.5 23.9004 25.1 20.1004 24.4 18.5004C23.8 16.9004 23.1 17.2004 22.7 17.2004C22.3 17.2004 21.7 17.2004 21.3 17.2004C20.9 17.2004 19.9 17.3004 19.3 18.2004C18.6 19.0004 16.6 20.9004 16.6 24.7004C16.6 28.5004 19.3 32.0004 19.8 32.7004C20.2 33.1004 25.3 41.0004 32.9 44.4004C34.7 45.2004 36.1 45.7004 37.3 46.1004C39.1 46.7004 40.8 46.5004 42.1 46.4004C43.6 46.3004 46.6 44.6004 47.3 42.7004C47.9 41.0004 47.9 39.3004 47.7 39.0004C47.5 38.8004 46.9 38.5004 46.2 38.2004Z"/>
-                                </svg>
-                                <span>Valuta con Whatsapp</span>
-                            </a>
-                        </div>
-
-                        <!-- Selezione manuale -->
                         <div class="stepContent" id="manualContent">
                             <div class="manualContainer" id="manualContainer">
                                 <div class="rowMarcaModello">
@@ -268,14 +240,17 @@
                                 </div>
                             </div>
 
-                            <button class="nextStep" href="#step-3" disabled style="margin-top: 25px;">Prossimo step
+                            <button type="button" class="nextStep ns-1" style="margin-top: 25px; margin-bottom: 25px" id="ns-1" href="#step-2" >Prossimo
+                                step
                             </button>
 
-                            <div class="manualOption">
-                                <span class="orSpan">oppure</span>
-                                <a class="changeInput" href="#" onclick="changeInputModeToTarga()">Valuta con la
-                                    targa</a>
-                            </div>
+                            <a class="whatsappForm" href="">
+                                <svg class="whatsappIcon" fill="#f7f7f7" width="18" height="18" viewBox="0 0 64 64"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M54 9.90039C48.2 4.10039 40.3 0.900391 32.2 0.900391C15.2 0.900391 1.3 14.7004 1.3 31.7004C1.3 37.2004 2.7 42.4004 5.4 47.2004L1 63.1004L17.5 58.9004C22 61.3004 27.1 62.7004 32.3 62.7004C49.2 62.6004 63 48.8004 63 31.7004C63 23.5004 59.8 15.8004 54 9.90039ZM32.1 57.4004C27.6 57.4004 22.9 56.1004 19 53.7004L18 53.1004L8.3 55.6004L11 46.2004L10.4 45.2004C7.9 41.1004 6.5 36.3004 6.5 31.5004C6.5 17.4004 17.9 6.00039 32.1 6.00039C38.9 6.00039 45.3 8.70039 50.1 13.5004C54.9 18.3004 57.6 24.8004 57.6 31.7004C57.8 46.0004 46.2 57.4004 32.1 57.4004ZM46.2 38.2004C45.4 37.8004 41.7 35.9004 40.8 35.8004C40.1 35.5004 39.5 35.4004 39.1 36.2004C38.7 37.0004 37.1 38.6004 36.7 39.2004C36.3 39.6004 35.9 39.8004 35 39.3004C34.2 38.9004 31.8 38.2004 28.8 35.4004C26.5 33.4004 24.9 30.9004 24.6 30.0004C24.2 29.2004 24.5 28.9004 25 28.4004C25.4 28.0004 25.8 27.6004 26.1 27.0004C26.5 26.6004 26.5 26.2004 26.9 25.7004C27.3 25.3004 27 24.7004 26.8 24.3004C26.5 23.9004 25.1 20.1004 24.4 18.5004C23.8 16.9004 23.1 17.2004 22.7 17.2004C22.3 17.2004 21.7 17.2004 21.3 17.2004C20.9 17.2004 19.9 17.3004 19.3 18.2004C18.6 19.0004 16.6 20.9004 16.6 24.7004C16.6 28.5004 19.3 32.0004 19.8 32.7004C20.2 33.1004 25.3 41.0004 32.9 44.4004C34.7 45.2004 36.1 45.7004 37.3 46.1004C39.1 46.7004 40.8 46.5004 42.1 46.4004C43.6 46.3004 46.6 44.6004 47.3 42.7004C47.9 41.0004 47.9 39.3004 47.7 39.0004C47.5 38.8004 46.9 38.5004 46.2 38.2004Z"/>
+                                </svg>
+                                <span>Valuta con Whatsapp</span>
+                            </a>
                         </div>
                     </div>
 
@@ -313,6 +288,7 @@
                             <div class="versionContainer" id="versionContainer">
                                 <select class="selectVersion" id="versione" onChange="success3()">
                                     <option value="">Seleziona la versione</option>
+                                    <option value="1">Versione 1</option>
                                 </select>
                             </div>
 
@@ -336,8 +312,8 @@
                         <!-- Chilometri -->
                         <div class="stepContent">
                             <div class="kmContainer" id="kmContainer">
-                                <input asp-for="Km" class="kmInput" type="number" id="input-4" onkeyup="success4()"
-                                       onchange="success4()" value="000" maxlength="7"
+                                <input  class="kmInput" type="number" id="input-4" onkeyup="success4()"
+                                       onchange="success4()" value="" maxlength="7"
                                        placeholder="Inserisci i kilometri"/>
                                 <button type="button" class="nextStep ns-4" id="ns-4" href="#step-5" disabled>Prossimo
                                     step
@@ -356,16 +332,13 @@
 
                         <div class="stepContent">
                             <div class="statContainer">
-                                @foreach (var carConditionInfo in FormHelper.CarConditionInfosDictionary.Values)
-                                {
-                                <label class="statChoise" for="@(carConditionInfo.Type)Radio">
+                                <label class="statChoise" for="carConditionInfo">
                                     <input type="radio" class="inputRadio" name="statInput"
-                                           id="@(carConditionInfo.Type)Radio" value="@((int)carConditionInfo.Type)"
-                                           onclick="AspEnumRadioClick(this, 'carConditionIdInput')"
-                                           @(carConditionInfo.Type== Model.CarCondition ? "checked" : string.Empty)>
-                                    <label for="@(carConditionInfo.Type)Radio">@carConditionInfo.Text</label>
+                                           id="carConditionInfo" value="10"
+                                           onclick="AspEnumRadioClick(this, 'carConditionIdInput')" checked >
+                                    <label for="carConditionInfo">Incidentata</label>
                                 </label>
-                                }
+
                             </div>
                             <div class="actionsForm">
                                 <a class="backStep bs-5" href="#step-4">Torna indietro</a>
@@ -435,7 +408,7 @@
 
                         <div class="stepContent esterniStep">
                             <div class="interniContainer" id="esterniContainer">
-                                <input asp-for="ExteriorConditions" class="interniInput" type="text" id="input-8"
+                                <input  class="interniInput" type="text" id="input-8"
                                        onkeyup="success8()" maxlength="" placeholder="Non ha graffi, ha una botta..."/>
                                 <span id="errorEsterni" class="errorTarga">Dicci di più...</span>
                             </div>
@@ -463,8 +436,7 @@
                                         <span>Foto della tua auto</span>
                                         <img src="/img/UploadIcon.svg"/>
                                     </div>
-                                    <input asp-for="CarPhotos" type="file" class="" id="FotoAuto" onchange="success9()"
-                                           accept="image/png, image/jpeg" multiple>
+                                    <input type="file" class="" id="FotoAuto" onchange="success9()" accept="image/png, image/jpeg" multiple>
                                     <span class="numberUpload" id="numberUpload">0 file caricati</span>
                                 </label>
 
@@ -489,24 +461,24 @@
                             <div class="contattiGroup">
                                 <div class="contattiRow contattiNomeCognome">
                                     <div class="contattoContainer contattoNome" id="contattoNome">
-                                        <input asp-for="FirstName" class="contattoInput" id="input-10-1"
+                                        <input class="contattoInput" id="input-10-1"
                                                onkeyup="success10()" name="Nome" type="text" maxlength=""
                                                placeholder="Nome"/>
                                     </div>
                                     <div class="contattoContainer contattoCognome" id="contattoCognome">
-                                        <input asp-for="LastName" class="contattoInput" id="input-10-2"
+                                        <input class="contattoInput" id="input-10-2"
                                                onkeyup="success10()" name="Cognome" type="text" maxlength=""
                                                placeholder="Cognome"/>
                                     </div>
                                 </div>
                                 <div class="contattiRow">
                                     <div class="contattoContainer" id="contattoTelefono">
-                                        <input asp-for="Phone" class="contattoInput" id="input-10-3"
+                                        <input  class="contattoInput" id="input-10-3"
                                                onkeyup="success10()" name="Telefono" type="tel" maxlength="10"
                                                placeholder="Telefono"/>
                                     </div>
                                     <div class="contattoContainer" id="contattoEmail">
-                                        <input asp-for="Email" class="contattoInput" id="input-10-4"
+                                        <input class="contattoInput" id="input-10-4"
                                                onkeyup="success10()" name="Email" type="email" maxlength=""
                                                placeholder="Email"/>
                                     </div>
@@ -520,14 +492,10 @@
 
                             <div class="actionsForm">
                                 <a class="backStep bs-10" href="#step-9">Torna indietro</a>
-                                <button type="submit" class="nextStep ns-10" id="ns-10" href="#" disabled>Richiedi
-                                    valutazione
-                                </button>
+                                <button type="submit" class="nextStep ns-10" id="ns-10" href="#" disabled>Richiedi valutazione</button>
                             </div>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </form>
@@ -535,11 +503,9 @@
 </div>
 
 
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
 <script src="/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="/js/site.js" ></script>
-<script src="/js/form.js" ></script>
-<script src="/js/form2.js" asp-append-version="true"></script>
+<script src="/js/site.js"></script>
+<script src="/js/form.js"></script>
+<script src="/js/form2.js"></script>
 </body>
 </html>

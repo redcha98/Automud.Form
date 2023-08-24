@@ -788,12 +788,8 @@ textarea{
 }
 
 #manualContent {
-    display: none;
+    display: flex;
     min-width: 600px;
-}
-
-.onViewManual {
-    display: flex !important;
     gap: 0;
 }
 
