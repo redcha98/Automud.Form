@@ -1,22 +1,24 @@
 import "./Step1.css";
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Step1 = ({ setStep }) => {
+  const navigate = useNavigate();
   const [cap, setCap] = useState("");
   const [error, setError] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    //Inserire qui la logica per usare l'API
-    // const res = await axios.get(
-    //   `https://automud-api-cap.azurewebsites.net/api/cap/${cap}`
-    // );
-
-    // console.log(res);
-    setStep(2);
+    await axios
+      .get(`https://automud-api-cap.azurewebsites.net/api/cap/${cap}`)
+      .then((res) => {
+        res.data.IsReachable ? setStep(2) : navigate("/unreachable");
+      })
+      .catch((err) => {
+        setError(true);
+      });
   };
-
   return (
     <form
       action="POST"

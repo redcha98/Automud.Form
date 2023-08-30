@@ -1,0 +1,40 @@
+.step4 {
+  min-width: 700px;
+  height: 500px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.step4 > .form-group > .form-control {
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  font-size: 1.2rem;
+  gap: 1rem;
+}
+
+.step4 > .form-group > .form-control > input {
+  margin: 0;
+}
+
+
+
+@media (max-width: 768px) {
+  .step4 {
+    min-width: 100%;
+    height: 100%;
+    padding: 0 1rem;
+  }
+
+  .step4 > .form-header {
+    margin-top: 4rem;
+  }
+
+  .step4 > .form-group {
+    flex-direction: column;
+    align-items: center;
+  }
+}

@@ -27,6 +27,13 @@ form > button {
 
 .step2 > .form-group > .form-control {
   width: 32%;
+  -webkit-appearance: none;
+  appearance: none;
+  -moz-appearance: none;
+  background-image: url('https://www.svgrepo.com/show/80156/down-arrow.svg');
+  background-repeat: no-repeat;
+  background-size: 14px 14px;
+  background-position: calc(100% - 16px);
 }
 
 .step2 > .form-group > .form-control.disabled {
@@ -48,5 +55,6 @@ form > button {
 
   .step2 > .form-group > .form-control {
     width: 100%;
+    padding: 0.5rem 1rem;
   }
 }

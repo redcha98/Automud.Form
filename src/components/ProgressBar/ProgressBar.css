@@ -21,7 +21,6 @@
 .progress-bar_container > button {
   border-radius: 1000px;
   border: 0;
-  width: 250px;
   height: 56px;
   padding: 0.5rem 1rem;
   display: flex;
@@ -30,17 +29,30 @@
   font-weight: 700;
   justify-content: center;
   align-items: center;
-  background-color: #0aaa8d;
   cursor: pointer;
   color: #f7f7f7;
 }
 
-.progress-bar_container > button:hover {
+.progress-bar_container > .progress-bar_whatsapp_btn:hover {
   background-color: #09816b;
 }
 
-.progress-bar_container > button > img {
+.progress-bar_container > .progress-bar_whatsapp_btn {
+  width: 250px;
+  background-color: #0aaa8d;
+}
+
+.progress-bar_container > .progress-bar_whatsapp_btn > img {
   width: 24px;
+}
+
+.progress-bar_container > .progress-bar_restart_btn {
+  width: 180px;
+  background-color: #6a0fff;
+}
+
+.progress-bar_container > .progress-bar_restart_btn:hover {
+  background-color: #4a0fc7;
 }
 
 .progress-bar {
@@ -61,8 +73,23 @@
   transition: width 0.3s ease;
 }
 
+.progress-bar_mobile {
+  width: 100%;
+  text-align: center;
+  display: none;
+  margin-top: auto;
+  margin-bottom: 2rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #4c00c6;
+}
+
 @media (max-width: 768px) {
   .progress-bar_container {
     display: none;
+  }
+
+  .progress-bar_mobile {
+    display: block;
   }
 }
