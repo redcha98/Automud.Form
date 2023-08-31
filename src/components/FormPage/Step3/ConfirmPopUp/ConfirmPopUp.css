@@ -69,3 +69,11 @@
   background-color: #fff;
   color: #6a0fff;
 }
+
+@media (max-width: 768px) {
+  .confirm-popup {
+    width: 100%;
+    height: 100%;
+    padding: 0 1rem;
+  }
+}
