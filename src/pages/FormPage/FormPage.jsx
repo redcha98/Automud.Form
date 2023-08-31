@@ -5,6 +5,8 @@ import Step2 from "../../components/FormPage/Step2/Step2";
 import Step3 from "../../components/FormPage/Step3/Step3";
 import Step4 from "../../components/FormPage/Step4/Step4";
 import Step5 from "../../components/FormPage/Step5/Step5";
+import Step6 from "../../components/FormPage/Step6/Step6";
+import Step7 from "../../components/FormPage/Step7/Step7";
 import ProgressBar from "../../components/ProgressBar/ProgressBar";
 import { useState } from "react";
 
@@ -19,6 +21,8 @@ function FormPage() {
         {step === 3 && <Step3 setStep={setStep} />}
         {step === 4 && <Step4 setStep={setStep} />}
         {step === 5 && <Step5 setStep={setStep} />}
+        {step === 6 && <Step6 setStep={setStep} />}
+        {step === 7 && <Step7 setStep={setStep} />}
         <ProgressBar step={step} setStep={setStep} />
       </main>
     </div>

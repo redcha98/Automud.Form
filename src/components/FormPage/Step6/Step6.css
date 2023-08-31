@@ -1,0 +1,23 @@
+.step6 {
+  min-width: 500px;
+  height: 500px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.form-group > textarea {
+  resize: none;
+  border-radius: 0.5rem;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .step6 {
+    min-width: 100%;
+    height: 100%;
+    padding: 0 1rem;
+  }
+}

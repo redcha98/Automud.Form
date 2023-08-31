@@ -28,7 +28,7 @@ const Step1 = ({ setStep }) => {
       onSubmit={handleSubmit}
     >
       <header className="form-header">
-        <h1>Dove Ritireremo la tua auto?</h1>
+        <h1>Dove ritireremo la tua auto?</h1>
         <h2>Inserisci il CAP della città dove si trova la tua auto</h2>
       </header>
       <div className="form-group">
