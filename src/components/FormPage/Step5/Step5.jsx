@@ -1,10 +1,10 @@
 import "./Step5.css";
 import { useState } from "react";
 
-const Step5 = ({ setStep }) => {
+const Step5 = ({ setStep, setFormData, formData }) => {
   const handleSubmit = (e) => {
-    //Inserire qui la logica per usare l'API
     e.preventDefault();
+    setFormData({ ...formData, Stato2: selected });
     setStep(6);
   };
   const [selected, setSelected] = useState(null);

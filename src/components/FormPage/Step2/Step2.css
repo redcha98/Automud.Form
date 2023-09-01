@@ -23,10 +23,11 @@ form > button {
 
 .step2 > .form-group {
   flex-wrap: wrap;
+  max-width: 1000px;
 }
 
 .step2 > .form-group > .form-control {
-  width: 32%;
+  width: 280px; 
   -webkit-appearance: none;
   appearance: none;
   -moz-appearance: none;

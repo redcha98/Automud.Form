@@ -2,7 +2,7 @@ import "./Step3.css";
 import { useState } from "react";
 import ConfirmPopUp from "./ConfirmPopUp/ConfirmPopUp";
 
-const Step3 = ({ setStep }) => {
+const Step3 = ({ setStep, setFormData, formData }) => {
   const [km, setKm] = useState("");
   const [showPopUp, setShowPopUp] = useState(false);
 
@@ -12,6 +12,7 @@ const Step3 = ({ setStep }) => {
     if (km < 5000 || km > 200000) {
       setShowPopUp(true);
     } else {
+      setFormData({ ...formData, Km: km });
       setStep(4);
     }
   };
@@ -53,7 +54,13 @@ const Step3 = ({ setStep }) => {
         </div>
       </form>
       {showPopUp && (
-        <ConfirmPopUp setShowPopUp={setShowPopUp} setStep={setStep} />
+        <ConfirmPopUp
+          setShowPopUp={setShowPopUp}
+          setStep={setStep}
+          formData={formData}
+          setFormData={setFormData}
+          km={km}
+        />
       )}
     </>
   );

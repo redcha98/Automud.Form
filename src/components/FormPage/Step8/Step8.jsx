@@ -2,14 +2,39 @@ import "./Step8.css";
 import uploadIcon from "../../../assets/images/UploadIcon.svg";
 import { useState } from "react";
 import Dropzone from "react-dropzone";
+import imageCompression from "browser-image-compression";
 
-const Step8 = ({ setStep }) => {
-
+const Step8 = ({ setStep, setFormData, formData }) => {
   const [foto, setFoto] = useState([]);
-  const handleSubmit = (e) => {
-    //Inserire qui la logica per usare l'API
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setStep(9);
+    const arrayFotoCompresse = await Promise.all(
+      foto.map(async (foto) => {
+        const options = {
+          maxSizeMB: 0.5,
+          maxWidthOrHeight: 1080,
+          useWebWorker: true,
+        };
+        try {
+          const compressedFile = await imageCompression(foto, options);
+          return compressedFile;
+        } catch (error) {
+          console.error("Error compressing photo:", error);
+          return null;
+        }
+      })
+    );
+    const tutteLeFotoCompresse = arrayFotoCompresse.every(
+      (foto) => foto !== null
+    );
+    if (tutteLeFotoCompresse) {
+      setFormData({ ...formData, Foto: arrayFotoCompresse });
+      setStep(9);
+    } else {
+      alert(
+        "Si è verificato un errore durante la compressione delle foto, riprova"
+      );
+    }
   };
 
   return (
@@ -28,7 +53,7 @@ const Step8 = ({ setStep }) => {
         </h2>
       </header>
       <div className="form-group">
-        <Dropzone onDrop={(acceptedFiles) => console.log(acceptedFiles)}>
+        <Dropzone onDrop={(acceptedFiles) => setFoto(acceptedFiles)}>
           {({ getRootProps, getInputProps }) => (
             <section>
               <div {...getRootProps()} className="dropzone">
@@ -44,9 +69,7 @@ const Step8 = ({ setStep }) => {
         <button type="button" onClick={() => setStep(7)}>
           Torna indietro
         </button>
-        <button type="submit" 
-        // disabled={foto.length === 0}
-        >
+        <button type="submit" disabled={foto.length < 1}>
           Prossimo step
         </button>
       </div>

@@ -1,8 +1,10 @@
 import "./Step9.css";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-const Step9 = ({ setStep }) => {
-  const [formData, setFormData] = useState({
+const Step9 = ({ setStep, formData, setFormData }) => {
+  const navigate = useNavigate();
+  const [stepData, setStepData] = useState({
     Nome: "",
     Cognome: "",
     Telefono: "",
@@ -10,13 +12,15 @@ const Step9 = ({ setStep }) => {
   });
 
   const handleSubmit = (e) => {
-    //Inserire qui la logica per usare l'API
+    // Fare qui chiamata POST all'API
     e.preventDefault();
-    console.log(formData);
+    setFormData({ ...formData, ...stepData });
+    console.log({ ...formData, ...stepData });
+    navigate("/success");
   };
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setStepData({ ...stepData, [e.target.name]: e.target.value });
   };
 
   return (
@@ -46,9 +50,9 @@ const Step9 = ({ setStep }) => {
             type={input.type}
             name={input.label}
             placeholder={input.label}
-            pattern={input.type === "tel" ? "[0-9]{10}" : undefined}
             className="form-control"
-            value={formData[input.label]}
+            value={stepData[input.label]}
+            pattern={input.type === "tel" ? "^3[0-9]{9}$" : null}
             onChange={handleChange}
           />
         ))}
@@ -60,7 +64,7 @@ const Step9 = ({ setStep }) => {
         </button>
         <button
           type="submit"
-          disabled={Object.values(formData).some((value) => value === "")}
+          disabled={Object.values(stepData).some((value) => value === "")}
         >
           Richiedi valutazione
         </button>

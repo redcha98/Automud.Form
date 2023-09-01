@@ -2,18 +2,27 @@ import "./Step1.css";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Loader from "../../Loader/Loader";
 
-const Step1 = ({ setStep }) => {
+const Step1 = ({ setStep, formData, setFormData }) => {
   const navigate = useNavigate();
   const [cap, setCap] = useState("");
   const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     await axios
       .get(`https://automud-api-cap.azurewebsites.net/api/cap/${cap}`)
       .then((res) => {
-        res.data.IsReachable ? setStep(2) : navigate("/unreachable");
+        setLoading(true);
+        if (res.data.IsReachable) {
+          setFormData({ ...formData, CAP: cap });
+          setStep(2);
+          setLoading(false);
+        } else {
+          navigate("/unreachable");
+        }
       })
       .catch((err) => {
         setError(true);
@@ -48,6 +57,7 @@ const Step1 = ({ setStep }) => {
           }}
         />
       </div>
+      {loading && <Loader />}
       {error && <span className="form-error">Inserisci un CAP valido</span>}
       <button disabled={cap.length < 5}>Prossimo step</button>
     </form>

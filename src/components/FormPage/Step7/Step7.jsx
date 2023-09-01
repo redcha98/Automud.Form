@@ -1,11 +1,12 @@
 import "./Step7.css";
 import { useState } from "react";
 
-const Step7 = ({ setStep }) => {
+const Step7 = ({ setStep, setFormData, formData }) => {
   const [esterni, setEsterni] = useState("");
   const handleSubmit = (e) => {
     //Inserire qui la logica per usare l'API
     e.preventDefault();
+    setFormData({ ...formData, Esterni: esterni });
     setStep(8);
   };
 

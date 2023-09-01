@@ -1,7 +1,7 @@
 import PopUpImage from "../../../../assets/images/PopUp.svg";
 import "./ConfirmPopUp.css";
 
-const ConfirmPopUp = ({ setShowPopUp, setStep }) => {
+const ConfirmPopUp = ({ setShowPopUp, setStep, formData, setFormData, km }) => {
   return (
     <div className="confirm-popup">
       <img src={PopUpImage} alt="PopUpImage" />
@@ -14,6 +14,7 @@ const ConfirmPopUp = ({ setShowPopUp, setStep }) => {
         <button
           onClick={() => {
             setShowPopUp(false);
+            setFormData({ ...formData, Km: km });
             setStep(4);
           }}
         >

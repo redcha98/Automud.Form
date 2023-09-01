@@ -1,11 +1,12 @@
 import "./Step6.css";
 import { useState } from "react";
 
-const Step6 = ({ setStep }) => {
+const Step6 = ({ setStep, setFormData, formData }) => {
   const [interni, setInterni] = useState("");
   const handleSubmit = (e) => {
     //Inserire qui la logica per usare l'API
     e.preventDefault();
+    setFormData({ ...formData, Interni: interni });
     setStep(7);
   };
 
