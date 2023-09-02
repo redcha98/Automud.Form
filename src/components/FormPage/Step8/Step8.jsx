@@ -58,7 +58,7 @@ const Step8 = ({ setStep, setFormData, formData }) => {
             <section>
               <div {...getRootProps()} className="dropzone">
                 <input {...getInputProps()} />
-                <p>Foto auto</p>
+                <p>Foto della tua auto</p>
                 <img src={uploadIcon} alt="upload icon" />
               </div>
             </section>

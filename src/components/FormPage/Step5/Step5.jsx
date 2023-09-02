@@ -26,12 +26,12 @@ const Step5 = ({ setStep, setFormData, formData }) => {
           "Non si accende e non si guida",
           "Si accende ma non si guida",
           "Si accende e si guida",
-        ].map((fieldName) => (
+        ].map((fieldName, index) => (
           <label key={fieldName} className="form-control">
             <input
               type="radio"
               name="stato-2"
-              value={fieldName}
+              value={index}
               required
               onChange={(e) => setSelected(e.target.value)}
             />

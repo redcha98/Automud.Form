@@ -23,12 +23,12 @@ const Step4 = ({ setStep, setFormData, formData }) => {
         <h2>Scegli l’opzione che descrive maggiormente la tua auto.</h2>
       </header>
       <div className="form-group">
-        {["Incidentata", "Guasta", "Usata"].map((fieldName) => (
+        {["Incidentata", "Guasta", "Usata"].map((fieldName, index) => (
           <label key={fieldName} className="form-control">
             <input
               type="radio"
               name="stato"
-              value={fieldName}
+              value={index}
               required
               onChange={(e) => setSelected(e.target.value)}
             />

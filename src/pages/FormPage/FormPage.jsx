@@ -10,79 +10,104 @@ import Step7 from "../../components/FormPage/Step7/Step7";
 import Step8 from "../../components/FormPage/Step8/Step8";
 import Step9 from "../../components/FormPage/Step9/Step9";
 import ProgressBar from "../../components/ProgressBar/ProgressBar";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { useParams, useNavigate } from "react-router-dom";
 
 function FormPage() {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({});
+  const { cap } = useParams();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (cap) {
+      axios
+        .get(`https://automud-api-cap.azurewebsites.net/api/cap/${cap}`)
+        .then((res) => {
+          if (res.data.IsReachable) {
+            setFormData({ ...formData, CAP: cap });
+            setStep(2);
+          } else {
+            navigate("/unreachable");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [cap]);
+
   return (
     <div className="form-page">
       <Header />
-      <main className="form-container">
-        {step === 1 && (
-          <Step1
-            setStep={setStep}
-            setFormData={setFormData}
-            formData={formData}
-          />
-        )}
-        {step === 2 && (
-          <Step2
-            setStep={setStep}
-            setFormData={setFormData}
-            formData={formData}
-          />
-        )}
-        {step === 3 && (
-          <Step3
-            setStep={setStep}
-            setFormData={setFormData}
-            formData={formData}
-          />
-        )}
-        {step === 4 && (
-          <Step4
-            setStep={setStep}
-            setFormData={setFormData}
-            formData={formData}
-          />
-        )}
-        {step === 5 && (
-          <Step5
-            setStep={setStep}
-            setFormData={setFormData}
-            formData={formData}
-          />
-        )}
-        {step === 6 && (
-          <Step6
-            setStep={setStep}
-            setFormData={setFormData}
-            formData={formData}
-          />
-        )}
-        {step === 7 && (
-          <Step7
-            setStep={setStep}
-            setFormData={setFormData}
-            formData={formData}
-          />
-        )}
-        {step === 8 && (
-          <Step8
-            setStep={setStep}
-            formData={formData}
-            setFormData={setFormData}
-          />
-        )}
-        {step === 9 && (
-          <Step9
-            setStep={setStep}
-            setFormData={setFormData}
-            formData={formData}
-          />
-        )}
-        <ProgressBar step={step} setStep={setStep} />
+      <main className="form-main">
+        <div className="form-container">
+          {step === 1 && (
+            <Step1
+              setStep={setStep}
+              setFormData={setFormData}
+              formData={formData}
+            />
+          )}
+          {step === 2 && (
+            <Step2
+              setStep={setStep}
+              setFormData={setFormData}
+              formData={formData}
+            />
+          )}
+          {step === 3 && (
+            <Step3
+              setStep={setStep}
+              setFormData={setFormData}
+              formData={formData}
+            />
+          )}
+          {step === 4 && (
+            <Step4
+              setStep={setStep}
+              setFormData={setFormData}
+              formData={formData}
+            />
+          )}
+          {step === 5 && (
+            <Step5
+              setStep={setStep}
+              setFormData={setFormData}
+              formData={formData}
+            />
+          )}
+          {step === 6 && (
+            <Step6
+              setStep={setStep}
+              setFormData={setFormData}
+              formData={formData}
+            />
+          )}
+          {step === 7 && (
+            <Step7
+              setStep={setStep}
+              setFormData={setFormData}
+              formData={formData}
+            />
+          )}
+          {step === 8 && (
+            <Step8
+              setStep={setStep}
+              formData={formData}
+              setFormData={setFormData}
+            />
+          )}
+          {step === 9 && (
+            <Step9
+              setStep={setStep}
+              setFormData={setFormData}
+              formData={formData}
+            />
+          )}
+          <ProgressBar step={step} setStep={setStep} />
+        </div>
       </main>
     </div>
   );

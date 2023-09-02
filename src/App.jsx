@@ -8,6 +8,7 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<FormPage />} />
+        <Route path="/:cap" element={<FormPage />} />
         <Route path="/unreachable" element={<UnreachablePage />} />
         <Route path="/success" element={<SuccessPage />} />
       </Routes>

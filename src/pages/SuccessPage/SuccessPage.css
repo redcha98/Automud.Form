@@ -68,7 +68,7 @@
   align-items: center;
 }
 
-button:hover {
+.success-page_container button:hover {
   background-color: transparent;
   border: 2px solid #6a0fff;
 }
