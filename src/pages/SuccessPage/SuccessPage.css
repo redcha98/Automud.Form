@@ -75,12 +75,18 @@
   border: 2px solid #6a0fff;
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 1280px) {
+  .success-page_container {
+    background-color: #f5efff;
+    padding: 0;
+  }
+
   .success-page_left {
     background-color: #f5efff;
     color: #6a0fff;
     width: 100%;
     padding: 0 2rem;
+    height: 100vh;
   }
 
   .success-page button {

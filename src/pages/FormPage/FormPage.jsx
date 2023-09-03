@@ -9,6 +9,7 @@ import Step6 from "../../components/FormPage/Step6/Step6";
 import Step7 from "../../components/FormPage/Step7/Step7";
 import Step8 from "../../components/FormPage/Step8/Step8";
 import Step9 from "../../components/FormPage/Step9/Step9";
+import Step10 from "../../components/FormPage/Step10/Step10";
 import ProgressBar from "../../components/ProgressBar/ProgressBar";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -67,7 +68,6 @@ function FormPage() {
               setStep={setStep}
               setFormData={setFormData}
               formData={formData}
-              marche={marche}
             />
           )}
           {step === 3 && (
@@ -75,6 +75,7 @@ function FormPage() {
               setStep={setStep}
               setFormData={setFormData}
               formData={formData}
+              marche={marche}
             />
           )}
           {step === 4 && (
@@ -114,6 +115,13 @@ function FormPage() {
           )}
           {step === 9 && (
             <Step9
+              setStep={setStep}
+              setFormData={setFormData}
+              formData={formData}
+            />
+          )}
+          {step === 10 && (
+            <Step10
               setStep={setStep}
               setFormData={setFormData}
               formData={formData}

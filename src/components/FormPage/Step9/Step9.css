@@ -1,21 +1,33 @@
-.step9 {
-
-  display: flex;
+.step9 .form-group {
   flex-direction: column;
   align-items: center;
+  gap: 2rem;
+}
+
+.dropzone {
+  background-color: #2121210d;
+  border: 0;
+  border-radius: 1000px;
+  width: 250px;
+  padding: 20px 30px;
   text-align: center;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  transition: all 0.3s ease;
 }
 
-.step9 > .form-group {
-  flex-direction: column;
+.dropzone:hover {
+  background-color: #e8e8e8;
 }
 
-@media (max-width: 768px) {
-  .step9 {
-    min-width: 100%;
-    height: 100%;
-  }
-  .step9 .form-control {
-    width: 100%;
-  }
+.number_uploaded {
+  color: #10002b;
+  font-size: 12px;
+  text-align: center;
+  display: block;
+  transition: all 0.3s ease;
 }

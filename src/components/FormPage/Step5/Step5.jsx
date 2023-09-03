@@ -4,8 +4,9 @@ import { motion } from "framer-motion";
 
 const Step5 = ({ setStep, setFormData, formData }) => {
   const handleSubmit = (e) => {
+    //Inserire qui la logica per usare l'API
     e.preventDefault();
-    setFormData({ ...formData, Stato2: selected });
+    setFormData({ ...formData, Stato: selected });
     setStep(6);
   };
   const [selected, setSelected] = useState(null);
@@ -22,19 +23,19 @@ const Step5 = ({ setStep, setFormData, formData }) => {
       transition={{ duration: 0.5 }}
     >
       <header className="form-header">
-        <h1>La tua auto si accende e si guida?</h1>
+        <h1>La tua auto é...</h1>
         <h2>Scegli l’opzione che descrive maggiormente la tua auto.</h2>
       </header>
       <div className="form-group">
         {[
-          { value: 30, label: "Non si accende e non si guida" },
-          { value: 20, label: "Si accende ma non si guida" },
-          { value: 10, label: "Si accende e si guida" },
+          { value: 10, label: "Incidentata" },
+          { value: 20, label: "Guasta" },
+          { value: 30, label: "Usata" },
         ].map((field) => (
           <label key={field.value} className="form-control">
             <input
               type="radio"
-              name="stato-2"
+              name="stato"
               value={field.value}
               required
               onChange={(e) => setSelected(e.target.value)}

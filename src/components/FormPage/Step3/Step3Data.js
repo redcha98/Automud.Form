@@ -1,4 +1,4 @@
-export const Step2Data = [
+export const Step3Data = [
   {
     id: 1,
     name: "Anno",

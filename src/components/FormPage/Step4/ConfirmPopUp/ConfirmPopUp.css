@@ -92,6 +92,26 @@
   color: #6a0fff;
 }
 
+@media (max-width: 1280px) {
+  .confirm-popup {
+    width: 300px;
+    height: 400px;
+    padding: 20px;
+  }
+
+  .confirm-popup > img {
+    width: 120px;
+  }
+
+  .confirm-popup > h1 {
+    font-size: 25px;
+  }
+
+  .confirm-popup > p {
+    font-size: 14px;
+  }
+}
+
 @media (max-width: 450px) {
   .pop-up-CAP {
     border-bottom-right-radius: 0;
@@ -99,8 +119,12 @@
   }
 
   .confirm-popup {
+    width: 100%;
+    border-radius: 35px 35px 0 0;
     bottom: 0;
     top: unset;
     transform: translate(-50%, 0);
   }
 }
+
+

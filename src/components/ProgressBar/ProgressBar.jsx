@@ -10,7 +10,7 @@ const ProgressBar = ({ step, setStep }) => {
           <div className="progress-bar">
             <div
               className="progress-bar_fill"
-              style={{ width: `${((step - 1) / 9) * 100}%` }}
+              style={{ width: `${((step - 1) / 10) * 100}%` }}
             ></div>
           </div>
           {step < 3 && (
@@ -30,7 +30,7 @@ const ProgressBar = ({ step, setStep }) => {
         </div>
       </div>
       <div className="progress-bar_mobile">
-        <p>{step} di 9</p>
+        <p>{step} di 10</p>
       </div>
     </>
   );

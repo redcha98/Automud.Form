@@ -3,13 +3,12 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 
 const Step6 = ({ setStep, setFormData, formData }) => {
-  const [interni, setInterni] = useState("");
   const handleSubmit = (e) => {
-    //Inserire qui la logica per usare l'API
     e.preventDefault();
-    setFormData({ ...formData, Interni: interni });
+    setFormData({ ...formData, Stato2: selected });
     setStep(7);
   };
+  const [selected, setSelected] = useState(null);
 
   return (
     <motion.form
@@ -23,23 +22,32 @@ const Step6 = ({ setStep, setFormData, formData }) => {
       transition={{ duration: 0.5 }}
     >
       <header className="form-header">
-        <h1>Come sono gli interni dell’auto?</h1>
-        <h2>Descrivi in poche parole le condizioni degli interni.</h2>
+        <h1>La tua auto si accende e si guida?</h1>
+        <h2>Scegli l’opzione che descrive maggiormente la tua auto.</h2>
       </header>
       <div className="form-group">
-        <textarea
-          name="interni"
-          required
-          onChange={(e) => setInterni(e.target.value)}
-          className="form-control"
-          placeholder="Ha gli Air Bag scoppiati, ha il sedile rotto..."
-        ></textarea>
+        {[
+          { value: 30, label: "Non si accende e non si guida" },
+          { value: 20, label: "Si accende ma non si guida" },
+          { value: 10, label: "Si accende e si guida" },
+        ].map((field) => (
+          <label key={field.value} className="form-control">
+            <input
+              type="radio"
+              name="stato-2"
+              value={field.value}
+              required
+              onChange={(e) => setSelected(e.target.value)}
+            />
+            {field.label}
+          </label>
+        ))}
       </div>
       <div className="step-buttons">
         <button type="button" onClick={() => setStep(5)}>
           Torna indietro
         </button>
-        <button type="submit" disabled={interni.length < 5}>
+        <button type="submit" disabled={!selected}>
           Prossimo step
         </button>
       </div>

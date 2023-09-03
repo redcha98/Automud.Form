@@ -22,15 +22,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 30px;
+  gap: 20px;
 }
 
 .progress-bar_main > span {
+  width: 10%;
+  text-align: right;
   color: #f7f7f7;
   font-weight: 500;
 }
 
 .progress-bar_main > button {
+  width: fit-content;
   border-radius: 1000px;
   border: 0;
   padding: 12px 15px;
@@ -66,10 +69,10 @@
 }
 
 .progress-bar {
-  width: 650px;
-  height: 8px;
+  width: 50%;
+  height: 6px;
   border-radius: 1000px;
-  background-color: #f7f7f7;
+  background-color: #e9ecef;
   position: relative;
 }
 
@@ -88,13 +91,13 @@
   text-align: center;
   display: none;
   margin-top: auto;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
   font-size: 1rem;
   font-weight: 700;
   color: #4c00c6;
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 1280px) {
   .progress-bar_container {
     display: none;
   }

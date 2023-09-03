@@ -50,7 +50,7 @@ const ConfirmPopUp = ({ setShowPopUp, setStep, formData, setFormData, km }) => {
           onClick={() => {
             setShowPopUp(false);
             setFormData({ ...formData, Km: km });
-            setStep(4);
+            setStep(5);
           }}
         >
           Sono sicuro!
