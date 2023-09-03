@@ -3,10 +3,13 @@ export const Step2Data = [
     id: 1,
     name: "Anno",
     options: [
-      { value: "1", label: "1" },
-      { value: "2", label: "2" },
-      { value: "3", label: "3" },
-      { value: "4", label: "4" },
+      ...Array.from(
+        { length: new Date().getFullYear() - 2000 + 1 },
+        (v, k) => ({
+          value: k + 2000,
+          label: k + 2000,
+        })
+      ),
     ],
   },
   {
@@ -23,29 +26,32 @@ export const Step2Data = [
     id: 4,
     name: "Cilindrata",
     options: [
-      { value: "1", label: "1" },
-      { value: "2", label: "2" },
-      { value: "3", label: "3" },
-      { value: "4", label: "4" },
+      { value: 1000, label: "1.0" },
+      { value: 1500, label: "1.5" },
+      { value: 2000, label: "2.0" },
+      { value: 3000, label: "3.0" },
     ],
   },
   {
     id: 5,
     name: "Alimentazione",
     options: [
-      { value: "Benzina", label: "Benzina" },
-      { value: "Diesel", label: "Diesel" },
-      { value: "GPL", label: "GPL" },
-      { value: "Metano", label: "Metano" },
-      { value: "Elettrica", label: "Elettrica" },
+      { value: 10, label: "Benzina" },
+      { value: 15, label: "Benzina Ibrida" },
+      { value: 20, label: "Diesel" },
+      { value: 25, label: "Diesel Ibrida" },
+      { value: 30, label: "Elettrica" },
+      { value: 35, label: "GPL" },
+      { value: 40, label: "Metano" },
+      { value: 45, label: "Etanolo" },
     ],
   },
   {
     id: 6,
     name: "Cambio",
     options: [
-      { value: "Automatico", label: "Automatico" },
-      { value: "Manuale", label: "Manuale" },
+      { value: 10, label: "Manuale" },
+      { value: 20, label: "Automatico" },
     ],
   },
 ];

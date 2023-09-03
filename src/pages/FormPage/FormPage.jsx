@@ -12,10 +12,12 @@ import Step9 from "../../components/FormPage/Step9/Step9";
 import ProgressBar from "../../components/ProgressBar/ProgressBar";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { AnimatePresence } from "framer-motion";
 import { useParams, useNavigate } from "react-router-dom";
 
 function FormPage() {
   const [step, setStep] = useState(1);
+  const [marche, setMarche] = useState([]);
   const [formData, setFormData] = useState({});
   const { cap } = useParams();
   const navigate = useNavigate();
@@ -38,6 +40,16 @@ function FormPage() {
     }
   }, [cap]);
 
+  useEffect(() => {
+    const getMarche = async () => {
+      const res = await axios.get(
+        "https://automud-api-vehicle.azurewebsites.net/api/make"
+      );
+      setMarche(res.data);
+    };
+    getMarche();
+  }, []);
+
   return (
     <div className="form-page">
       <Header />
@@ -55,6 +67,7 @@ function FormPage() {
               setStep={setStep}
               setFormData={setFormData}
               formData={formData}
+              marche={marche}
             />
           )}
           {step === 3 && (

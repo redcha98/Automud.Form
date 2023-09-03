@@ -2,48 +2,54 @@ import "./Step8.css";
 import uploadIcon from "../../../assets/images/UploadIcon.svg";
 import { useState } from "react";
 import Dropzone from "react-dropzone";
-import imageCompression from "browser-image-compression";
+import Compressor from "compressorjs";
+import { motion } from "framer-motion";
 
 const Step8 = ({ setStep, setFormData, formData }) => {
   const [foto, setFoto] = useState([]);
+  const [error, setError] = useState(false);
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const arrayFotoCompresse = await Promise.all(
-      foto.map(async (foto) => {
-        const options = {
-          maxSizeMB: 0.5,
-          maxWidthOrHeight: 1080,
-          useWebWorker: true,
-        };
-        try {
-          const compressedFile = await imageCompression(foto, options);
-          return compressedFile;
-        } catch (error) {
-          console.error("Error compressing photo:", error);
-          return null;
-        }
+    await Promise.all(foto.map(compressImage))
+      .then((compressedFiles) => {
+        let fotoCompresse = createFileList(compressedFiles);
+        setFormData({ ...formData, Foto: fotoCompresse.files });
+        setStep(9);
       })
-    );
-    const tutteLeFotoCompresse = arrayFotoCompresse.every(
-      (foto) => foto !== null
-    );
-    if (tutteLeFotoCompresse) {
-      setFormData({ ...formData, Foto: arrayFotoCompresse });
-      setStep(9);
-    } else {
-      alert(
-        "Si è verificato un errore durante la compressione delle foto, riprova"
-      );
+      .catch((error) => {
+        setError(true);
+      });
+
+    function createFileList(compressedFiles) {
+      let list = new DataTransfer();
+      for (let i = 0; i < compressedFiles.length; i++) {
+        list.items.add(compressedFiles[i]);
+      }
+      return list;
     }
   };
+  function compressImage(file) {
+    return new Promise((resolve, reject) => {
+      new Compressor(file, {
+        quality: 0.25,
+        success: (result) => {
+          resolve(new File([result], file.name, { type: result.type }));
+        },
+        error: (error) => reject(error),
+      });
+    });
+  }
 
   return (
-    <form
+    <motion.form
       className="step8"
       onSubmit={handleSubmit}
       action="POST"
       role="form"
       encType="multipart/form-data"
+      initial={{ y: "100%" }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.5 }}
     >
       <header className="form-header">
         <h1>Mostraci la tua auto con qualche foto...</h1>
@@ -53,7 +59,15 @@ const Step8 = ({ setStep, setFormData, formData }) => {
         </h2>
       </header>
       <div className="form-group">
-        <Dropzone onDrop={(acceptedFiles) => setFoto(acceptedFiles)}>
+        <Dropzone
+          onDropAccepted={(acceptedFiles) => {
+            setFoto(acceptedFiles);
+            setError(false);
+          }}
+          onDropRejected={() => setError(true)}
+          multiple={true}
+          accept={"image/jpeg, image/png"}
+        >
           {({ getRootProps, getInputProps }) => (
             <section>
               <div {...getRootProps()} className="dropzone">
@@ -64,16 +78,29 @@ const Step8 = ({ setStep, setFormData, formData }) => {
             </section>
           )}
         </Dropzone>
+        <div className="number_uploaded">
+          {!error && (
+            <p>
+              {foto.length}{" "}
+              {foto.length === 1 ? "foto caricata" : "foto caricate"}
+            </p>
+          )}
+          {error && (
+            <span className="error">
+              Il formato delle foto non è corretto. Riprova con un’altra foto.
+            </span>
+          )}
+        </div>
       </div>
       <div className="step-buttons">
         <button type="button" onClick={() => setStep(7)}>
           Torna indietro
         </button>
-        <button type="submit" disabled={foto.length < 1}>
+        <button type="submit" disabled={foto.length < 1 || error}>
           Prossimo step
         </button>
       </div>
-    </form>
+    </motion.form>
   );
 };
 

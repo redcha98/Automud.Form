@@ -1,5 +1,6 @@
 import "./Step4.css";
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 const Step4 = ({ setStep, setFormData, formData }) => {
   const handleSubmit = (e) => {
@@ -11,28 +12,35 @@ const Step4 = ({ setStep, setFormData, formData }) => {
   const [selected, setSelected] = useState(null);
 
   return (
-    <form
+    <motion.form
       className="step4"
       onSubmit={handleSubmit}
       action="POST"
       role="form"
       encType="multipart/form-data"
+      initial={{ y: "100%" }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.5 }}
     >
       <header className="form-header">
         <h1>La tua auto é...</h1>
         <h2>Scegli l’opzione che descrive maggiormente la tua auto.</h2>
       </header>
       <div className="form-group">
-        {["Incidentata", "Guasta", "Usata"].map((fieldName, index) => (
-          <label key={fieldName} className="form-control">
+        {[
+          { value: 10, label: "Incidentata" },
+          { value: 20, label: "Guasta" },
+          { value: 30, label: "Usata" },
+        ].map((field) => (
+          <label key={field.value} className="form-control">
             <input
               type="radio"
               name="stato"
-              value={index}
+              value={field.value}
               required
               onChange={(e) => setSelected(e.target.value)}
             />
-            {fieldName}
+            {field.label}
           </label>
         ))}
       </div>
@@ -44,7 +52,7 @@ const Step4 = ({ setStep, setFormData, formData }) => {
           Prossimo step
         </button>
       </div>
-    </form>
+    </motion.form>
   );
 };
 

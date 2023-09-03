@@ -3,6 +3,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Loader from "../../Loader/Loader";
+import { motion } from "framer-motion";
 
 const Step1 = ({ setStep, formData, setFormData }) => {
   const navigate = useNavigate();
@@ -12,29 +13,34 @@ const Step1 = ({ setStep, formData, setFormData }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await axios
-      .get(`https://automud-api-cap.azurewebsites.net/api/cap/${cap}`)
-      .then((res) => {
-        setLoading(true);
-        if (res.data.IsReachable) {
-          setFormData({ ...formData, CAP: cap });
-          setStep(2);
-          setLoading(false);
-        } else {
-          navigate("/unreachable");
-        }
-      })
-      .catch((err) => {
-        setError(true);
-      });
+    setLoading(true);
+
+    try {
+      const res = await axios.get(
+        `https://automud-api-cap.azurewebsites.net/api/cap/${cap}`
+      );
+      if (res.data.IsReachable) {
+        setFormData({ ...formData, CAP: cap });
+        setStep(2);
+      } else {
+        navigate("/unreachable");
+      }
+    } catch (err) {
+      setError(true);
+    } finally {
+      setLoading(false);
+    }
   };
   return (
-    <form
+    <motion.form
       action="POST"
       role="form"
       encType="multipart/form-data"
       className="step1"
       onSubmit={handleSubmit}
+      initial={{ y: "100%" }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.5 }}
     >
       <header className="form-header">
         <h1>Dove ritireremo la tua auto?</h1>
@@ -60,7 +66,7 @@ const Step1 = ({ setStep, formData, setFormData }) => {
       {loading && <Loader />}
       {error && <span className="form-error">Inserisci un CAP valido</span>}
       <button disabled={cap.length < 5}>Prossimo step</button>
-    </form>
+    </motion.form>
   );
 };
 

@@ -2,8 +2,9 @@ import "./Step2.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Step2Data } from "./Step2Data";
+import { motion } from "framer-motion";
 
-const Step2 = ({ setStep, formData, setFormData }) => {
+const Step2 = ({ setStep, formData, setFormData, marche }) => {
   const [stepData, setStepData] = useState({
     Anno: "",
     Marca: "",
@@ -13,27 +14,21 @@ const Step2 = ({ setStep, formData, setFormData }) => {
     Cambio: "",
   });
 
-  const [marche, setMarche] = useState([]);
   const [modelli, setModelli] = useState([]);
 
   useEffect(() => {
-    const getMarche = async () => {
-      const res = await axios.get(
-        "https://automud-api-vehicle.azurewebsites.net/api/make"
-      );
-      setMarche(res.data);
-    };
-    getMarche();
-  }, []);
-
-  useEffect(() => {
     const getModelli = async () => {
+      document.getElementById("Modello").classList.add("disabled");
       if (stepData.Marca === "") return;
       const marca = marche.find((marca) => marca.Name === stepData.Marca);
-      const res = await axios.get(
-        `https://automud-api-vehicle.azurewebsites.net/api/make/${marca.Id}/model`
-      );
-      setModelli(res.data);
+      await axios
+        .get(
+          `https://automud-api-vehicle.azurewebsites.net/api/make/${marca.Id}/model`
+        )
+        .then((res) => {
+          setModelli(res.data);
+          document.getElementById("Modello").classList.remove("disabled");
+        });
     };
     getModelli();
   }, [stepData.Marca]);
@@ -50,12 +45,15 @@ const Step2 = ({ setStep, formData, setFormData }) => {
   };
 
   return (
-    <form
+    <motion.form
       className="step2"
       onSubmit={handleSubmit}
       action="POST"
       role="form"
       encType="multipart/form-data"
+      initial={{ y: "100%" }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.5 }}
     >
       <header className="form-header">
         <h1>Iniziamo con la valutazione</h1>
@@ -66,7 +64,11 @@ const Step2 = ({ setStep, formData, setFormData }) => {
           return (
             <select
               key={index}
-              className="form-control"
+              className={
+                data.name === "Modello"
+                  ? "form-control disabled"
+                  : "form-control"
+              }
               id={data.name}
               name={data.name}
               required
@@ -109,7 +111,7 @@ const Step2 = ({ setStep, formData, setFormData }) => {
       >
         Prossimo step
       </button>
-    </form>
+    </motion.form>
   );
 };
 

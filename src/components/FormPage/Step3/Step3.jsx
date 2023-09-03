@@ -1,6 +1,7 @@
 import "./Step3.css";
 import { useState } from "react";
 import ConfirmPopUp from "./ConfirmPopUp/ConfirmPopUp";
+import { motion } from "framer-motion";
 
 const Step3 = ({ setStep, setFormData, formData }) => {
   const [km, setKm] = useState("");
@@ -19,12 +20,15 @@ const Step3 = ({ setStep, setFormData, formData }) => {
   return (
     <>
       {showPopUp && <div className="backdrop"></div>}
-      <form
+      <motion.form
         action="POST"
         role="form"
         encType="multipart/form-data"
         className="step3"
         onSubmit={handleSubmit}
+        initial={{ y: "100%" }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.5 }}
       >
         <header className="form-header">
           <h1>Quanti kilometri ha la tua auto?</h1>
@@ -52,7 +56,7 @@ const Step3 = ({ setStep, setFormData, formData }) => {
             Prossimo step
           </button>
         </div>
-      </form>
+      </motion.form>
       {showPopUp && (
         <ConfirmPopUp
           setShowPopUp={setShowPopUp}

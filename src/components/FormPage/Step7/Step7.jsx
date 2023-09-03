@@ -1,5 +1,6 @@
 import "./Step7.css";
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 const Step7 = ({ setStep, setFormData, formData }) => {
   const [esterni, setEsterni] = useState("");
@@ -11,12 +12,15 @@ const Step7 = ({ setStep, setFormData, formData }) => {
   };
 
   return (
-    <form
+    <motion.form
       className="step7"
       onSubmit={handleSubmit}
       action="POST"
       role="form"
       encType="multipart/form-data"
+      initial={{ y: "100%" }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.5 }}
     >
       <header className="form-header">
         <h1>Come sono gli esterni dell’auto?</h1>
@@ -39,7 +43,7 @@ const Step7 = ({ setStep, setFormData, formData }) => {
           Prossimo step
         </button>
       </div>
-    </form>
+    </motion.form>
   );
 };
 

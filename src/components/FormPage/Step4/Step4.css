@@ -1,25 +1,23 @@
 .step4 {
-
-
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
 }
 
-.step4 > .form-group > .form-control {
+.step4 > .form-group > .form-control,
+.step5 > .form-group > .form-control {
   background-color: #fff;
   display: flex;
   align-items: center;
-  font-size: 1.2rem;
+  width: 280px;
+  height: 56px;
   gap: 1rem;
 }
 
 .step4 > .form-group > .form-control > input {
   margin: 0;
 }
-
-
 
 @media (max-width: 768px) {
   .step4 {

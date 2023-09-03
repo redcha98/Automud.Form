@@ -1,9 +1,44 @@
 import PopUpImage from "../../../../assets/images/PopUp.svg";
 import "./ConfirmPopUp.css";
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 
 const ConfirmPopUp = ({ setShowPopUp, setStep, formData, setFormData, km }) => {
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    window.addEventListener(
+      "resize",
+      () => {
+        const ismobile = window.innerWidth <= 768;
+        if (ismobile !== isMobile) setIsMobile(ismobile);
+      },
+      false
+    );
+  }, [isMobile]);
+
   return (
-    <div className="confirm-popup">
+    <motion.div
+      className="confirm-popup"
+      initial={{ y: "100%", x: "-50%" }}
+      animate={isMobile ? { y: 0, x: "-50%" } : { y: "-50%", x: "-50%" }}
+      transition={{ duration: 0.5 }}
+    >
+      <div className="close-pop-up-CAP-container">
+        <a className="close-pop-up-CAP" onClick={() => setShowPopUp(false)}>
+          <svg
+            width="15"
+            height="15"
+            viewBox="0 0 32 32"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M2 1.5L30.5 30" stroke="#10002B" stroke-width="4"></path>
+            <path d="M30.5 1.5L2 30" stroke="#10002B" stroke-width="4"></path>
+          </svg>
+        </a>
+      </div>
+
       <img src={PopUpImage} alt="PopUpImage" />
       <h1>Per essere sicuri...</h1>
       <p>
@@ -28,7 +63,7 @@ const ConfirmPopUp = ({ setShowPopUp, setStep, formData, setFormData, km }) => {
           Reimposta kilometri
         </button>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

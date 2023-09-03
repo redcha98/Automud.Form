@@ -1,5 +1,4 @@
 .unreachable-container {
-  min-height: calc(100vh - 95px);
   background-image: url("../../assets/images/SecondBG.svg");
   background-color: #614bf2;
   background-repeat: no-repeat;
@@ -9,6 +8,10 @@
   flex-direction: column;
   align-items: center;
   color: #f7f7f7;
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  padding: 125px 0;
 }
 
 .unreachable-container > img {
@@ -79,8 +82,8 @@
 
 @media (max-width: 768px) {
   .unreachable-container {
-    padding: 0 1rem;
     text-align: center;
+    padding: 125px 1rem;
   }
 
   .unreachable-container > img {
