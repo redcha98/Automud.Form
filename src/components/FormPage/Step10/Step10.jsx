@@ -77,7 +77,7 @@ const Step10 = ({ setStep, formData, setFormData, handleGoBack }) => {
       .post("https://automud-request.azurewebsites.net/api/request", apiFormData)
       .then((res) => {
         console.log(res);
-        //navigate("/success");
+        navigate("/success");
       })
       .catch((err) => console.log(err));
   };
