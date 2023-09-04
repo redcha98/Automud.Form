@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Loader from "../../Loader/Loader";
 import { motion } from "framer-motion";
 
-const Step1 = ({ setStep, formData, setFormData }) => {
+const Step1 = ({ setStep, formData, setFormData, reverseAnimation }) => {
   const navigate = useNavigate();
   const [cap, setCap] = useState("");
   const [error, setError] = useState(false);
@@ -37,7 +37,7 @@ const Step1 = ({ setStep, formData, setFormData }) => {
       encType="multipart/form-data"
       className="step1"
       onSubmit={handleSubmit}
-      initial={{ y: "100%" }}
+      initial={{ y: reverseAnimation ? "-100%" : "100%" }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
     >

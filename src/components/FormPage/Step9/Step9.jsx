@@ -9,7 +9,7 @@ const Step9 = ({
   setStep,
   setFormData,
   formData,
-  handleReverseAnimation,
+  handleGoBack,
   reverseAnimation,
 }) => {
   const [foto, setFoto] = useState([]);
@@ -99,7 +99,7 @@ const Step9 = ({
         </div>
       </div>
       <div className="step-buttons">
-        <button type="button" onClick={handleReverseAnimation}>
+        <button type="button" onClick={() => handleGoBack(false)}>
           Torna indietro
         </button>
         <button type="submit" disabled={foto.length < 1 || error}>

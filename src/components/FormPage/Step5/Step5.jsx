@@ -6,7 +6,7 @@ const Step5 = ({
   setStep,
   setFormData,
   formData,
-  handleReverseAnimation,
+  handleGoBack,
   reverseAnimation,
 }) => {
   const handleSubmit = (e) => {
@@ -51,7 +51,7 @@ const Step5 = ({
         ))}
       </div>
       <div className="step-buttons">
-        <button type="button" onClick={handleReverseAnimation}>
+        <button type="button" onClick={() => handleGoBack(false)}>
           Torna indietro
         </button>
         <button type="submit" disabled={!selected}>

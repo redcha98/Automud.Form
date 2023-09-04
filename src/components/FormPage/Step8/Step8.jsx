@@ -5,7 +5,7 @@ const Step8 = ({
   setStep,
   setFormData,
   formData,
-  handleReverseAnimation,
+  handleGoBack,
   reverseAnimation,
 }) => {
   const [esterni, setEsterni] = useState(
@@ -44,7 +44,7 @@ const Step8 = ({
         ></textarea>
       </div>
       <div className="step-buttons">
-        <button type="button" onClick={handleReverseAnimation}>
+        <button type="button" onClick={() => handleGoBack(false)}>
           Torna indietro
         </button>
         <button type="submit" disabled={esterni.length < 5}>

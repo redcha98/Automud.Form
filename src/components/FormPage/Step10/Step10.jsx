@@ -5,7 +5,7 @@ import axios from "axios";
 import Loader from "../../Loader/Loader";
 import { motion } from "framer-motion";
 
-const Step10 = ({ setStep, formData, setFormData, handleReverseAnimation }) => {
+const Step10 = ({ setStep, formData, setFormData, handleGoBack }) => {
   const navigate = useNavigate();
   const [phoneError, setPhoneError] = useState(false);
   const [emailError, setEmailError] = useState(false);
@@ -140,7 +140,7 @@ const Step10 = ({ setStep, formData, setFormData, handleReverseAnimation }) => {
       )}
 
       <div className="step-buttons">
-        <button type="button" onClick={handleReverseAnimation}>
+        <button type="button" onClick={() => handleGoBack(false)}>
           Torna indietro
         </button>
         <button

@@ -7,7 +7,7 @@ const Step4 = ({
   setStep,
   setFormData,
   formData,
-  handleReverseAnimation,
+  handleGoBack,
   reverseAnimation,
 }) => {
   const [km, setKm] = useState(formData.Km ? formData.Km : "");
@@ -54,7 +54,7 @@ const Step4 = ({
           />
         </div>
         <div className="step-buttons">
-          <button type="button" onClick={handleReverseAnimation}>
+          <button type="button" onClick={() => handleGoBack(false)}>
             Torna indietro
           </button>
           <button type="submit" disabled={km.length < 1}>

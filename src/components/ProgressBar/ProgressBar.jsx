@@ -1,7 +1,7 @@
 import "./ProgressBar.css";
 import WhatsappIcon from "../../assets/images/WhatsappIcon.svg";
 
-const ProgressBar = ({ step, setStep }) => {
+const ProgressBar = ({ step, handleGoBack }) => {
   return (
     <>
       <div className="progress-bar_container">
@@ -22,7 +22,7 @@ const ProgressBar = ({ step, setStep }) => {
           {step >= 3 && (
             <button
               className="progress-bar_restart_btn"
-              onClick={() => setStep(1)}
+              onClick={() => handleGoBack(true)}
             >
               <span>Inizia da zero</span>
             </button>
