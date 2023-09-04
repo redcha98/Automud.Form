@@ -11,10 +11,10 @@ const Step10 = ({ setStep, formData, setFormData, handleReverseAnimation }) => {
   const [emailError, setEmailError] = useState(false);
   const [loading, setLoading] = useState(false);
   const [stepData, setStepData] = useState({
-    Nome: formData.Nome || "",
-    Cognome: formData.Cognome || "",
-    Telefono: formData.Telefono || "",
-    Email: formData.Email || "",
+    Nome: "",
+    Cognome: "",
+    Telefono: "",
+    Email: "",
   });
 
   const handleSubmit = async (e) => {
