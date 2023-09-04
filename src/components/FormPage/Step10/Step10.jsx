@@ -74,7 +74,7 @@ const Step10 = ({ setStep, formData, setFormData, handleGoBack }) => {
     }
 
     await axios
-      .post("http://localhost:7071/api/request", apiFormData)
+      .post("https://automud-request.azurewebsites.net/api/request", apiFormData)
       .then((res) => {
         console.log(res);
         //navigate("/success");
