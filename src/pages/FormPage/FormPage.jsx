@@ -20,8 +20,17 @@ function FormPage() {
   const [step, setStep] = useState(1);
   const [marche, setMarche] = useState([]);
   const [formData, setFormData] = useState({});
+  const [reverseAnimation, setReverseAnimation] = useState(false);
   const { cap } = useParams();
   const navigate = useNavigate();
+  const handleReverseAnimation = () => {
+    setReverseAnimation(true);
+    setStep(step - 1);
+
+    setTimeout(() => {
+      setReverseAnimation(false);
+    }, 500);
+  };
 
   useEffect(() => {
     if (cap) {
@@ -76,6 +85,7 @@ function FormPage() {
               setFormData={setFormData}
               formData={formData}
               marche={marche}
+              reverseAnimation={reverseAnimation}
             />
           )}
           {step === 4 && (
@@ -83,6 +93,8 @@ function FormPage() {
               setStep={setStep}
               setFormData={setFormData}
               formData={formData}
+              handleReverseAnimation={handleReverseAnimation}
+              reverseAnimation={reverseAnimation}
             />
           )}
           {step === 5 && (
@@ -90,6 +102,8 @@ function FormPage() {
               setStep={setStep}
               setFormData={setFormData}
               formData={formData}
+              handleReverseAnimation={handleReverseAnimation}
+              reverseAnimation={reverseAnimation}
             />
           )}
           {step === 6 && (
@@ -97,6 +111,8 @@ function FormPage() {
               setStep={setStep}
               setFormData={setFormData}
               formData={formData}
+              handleReverseAnimation={handleReverseAnimation}
+              reverseAnimation={reverseAnimation}
             />
           )}
           {step === 7 && (
@@ -104,6 +120,8 @@ function FormPage() {
               setStep={setStep}
               setFormData={setFormData}
               formData={formData}
+              handleReverseAnimation={handleReverseAnimation}
+              reverseAnimation={reverseAnimation}
             />
           )}
           {step === 8 && (
@@ -111,6 +129,8 @@ function FormPage() {
               setStep={setStep}
               formData={formData}
               setFormData={setFormData}
+              handleReverseAnimation={handleReverseAnimation}
+              reverseAnimation={reverseAnimation}
             />
           )}
           {step === 9 && (
@@ -118,6 +138,8 @@ function FormPage() {
               setStep={setStep}
               setFormData={setFormData}
               formData={formData}
+              handleReverseAnimation={handleReverseAnimation}
+              reverseAnimation={reverseAnimation}
             />
           )}
           {step === 10 && (
@@ -125,6 +147,7 @@ function FormPage() {
               setStep={setStep}
               setFormData={setFormData}
               formData={formData}
+              handleReverseAnimation={handleReverseAnimation}
             />
           )}
           <ProgressBar step={step} setStep={setStep} />

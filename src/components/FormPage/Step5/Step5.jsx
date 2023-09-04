@@ -2,14 +2,19 @@ import "./Step5.css";
 import { useState } from "react";
 import { motion } from "framer-motion";
 
-const Step5 = ({ setStep, setFormData, formData }) => {
+const Step5 = ({
+  setStep,
+  setFormData,
+  formData,
+  handleReverseAnimation,
+  reverseAnimation,
+}) => {
   const handleSubmit = (e) => {
-    //Inserire qui la logica per usare l'API
     e.preventDefault();
     setFormData({ ...formData, Stato: selected });
     setStep(6);
   };
-  const [selected, setSelected] = useState(null);
+  const [selected, setSelected] = useState(formData.Stato || null);
 
   return (
     <motion.form
@@ -18,7 +23,7 @@ const Step5 = ({ setStep, setFormData, formData }) => {
       action="POST"
       role="form"
       encType="multipart/form-data"
-      initial={{ y: "100%" }}
+      initial={{ y: reverseAnimation ? "-100%" : "100%" }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
     >
@@ -38,14 +43,15 @@ const Step5 = ({ setStep, setFormData, formData }) => {
               name="stato"
               value={field.value}
               required
-              onChange={(e) => setSelected(e.target.value)}
+              onChange={(e) => setSelected(field.value)}
+              checked={selected === field.value}
             />
             {field.label}
           </label>
         ))}
       </div>
       <div className="step-buttons">
-        <button type="button" onClick={() => setStep(4)}>
+        <button type="button" onClick={handleReverseAnimation}>
           Torna indietro
         </button>
         <button type="submit" disabled={!selected}>

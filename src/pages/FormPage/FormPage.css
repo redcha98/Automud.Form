@@ -215,10 +215,6 @@ input[type="number"]::-webkit-outer-spin-button {
     width: 100%;
   }
 
-  .form-control {
-    width: 80%;
-  }
-
   .form-error {
     margin: 1rem 0;
   }

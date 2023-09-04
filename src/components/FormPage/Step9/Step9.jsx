@@ -5,7 +5,13 @@ import Dropzone from "react-dropzone";
 import Compressor from "compressorjs";
 import { motion } from "framer-motion";
 
-const Step9 = ({ setStep, setFormData, formData }) => {
+const Step9 = ({
+  setStep,
+  setFormData,
+  formData,
+  handleReverseAnimation,
+  reverseAnimation,
+}) => {
   const [foto, setFoto] = useState([]);
   const [error, setError] = useState(false);
   const handleSubmit = async (e) => {
@@ -47,7 +53,7 @@ const Step9 = ({ setStep, setFormData, formData }) => {
       action="POST"
       role="form"
       encType="multipart/form-data"
-      initial={{ y: "100%" }}
+      initial={{ y: reverseAnimation ? "-100%" : "100%" }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
     >
@@ -93,7 +99,7 @@ const Step9 = ({ setStep, setFormData, formData }) => {
         </div>
       </div>
       <div className="step-buttons">
-        <button type="button" onClick={() => setStep(8)}>
+        <button type="button" onClick={handleReverseAnimation}>
           Torna indietro
         </button>
         <button type="submit" disabled={foto.length < 1 || error}>

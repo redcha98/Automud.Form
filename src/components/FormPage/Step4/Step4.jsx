@@ -3,13 +3,18 @@ import { useState } from "react";
 import ConfirmPopUp from "./ConfirmPopUp/ConfirmPopUp";
 import { motion } from "framer-motion";
 
-const Step4 = ({ setStep, setFormData, formData }) => {
-  const [km, setKm] = useState("");
+const Step4 = ({
+  setStep,
+  setFormData,
+  formData,
+  handleReverseAnimation,
+  reverseAnimation,
+}) => {
+  const [km, setKm] = useState(formData.Km ? formData.Km : "");
   const [showPopUp, setShowPopUp] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Inserire qui la logica per usare l'API
     if (km < 5000 || km > 200000) {
       setShowPopUp(true);
     } else {
@@ -26,7 +31,7 @@ const Step4 = ({ setStep, setFormData, formData }) => {
         encType="multipart/form-data"
         className="step4"
         onSubmit={handleSubmit}
-        initial={{ y: "100%" }}
+        initial={{ y: reverseAnimation ? "-100%" : "100%" }}
         animate={{ y: 0 }}
         transition={{ duration: 0.5 }}
       >
@@ -49,7 +54,7 @@ const Step4 = ({ setStep, setFormData, formData }) => {
           />
         </div>
         <div className="step-buttons">
-          <button type="button" onClick={() => setStep(3)}>
+          <button type="button" onClick={handleReverseAnimation}>
             Torna indietro
           </button>
           <button type="submit" disabled={km.length < 1}>

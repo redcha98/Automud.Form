@@ -1,8 +1,16 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 
-const Step8 = ({ setStep, setFormData, formData }) => {
-  const [esterni, setEsterni] = useState("");
+const Step8 = ({
+  setStep,
+  setFormData,
+  formData,
+  handleReverseAnimation,
+  reverseAnimation,
+}) => {
+  const [esterni, setEsterni] = useState(
+    formData.Esterni ? formData.Esterni : ""
+  );
   const handleSubmit = (e) => {
     //Inserire qui la logica per usare l'API
     e.preventDefault();
@@ -17,7 +25,7 @@ const Step8 = ({ setStep, setFormData, formData }) => {
       action="POST"
       role="form"
       encType="multipart/form-data"
-      initial={{ y: "100%" }}
+      initial={{ y: reverseAnimation ? "-100%" : "100%" }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
     >
@@ -29,13 +37,14 @@ const Step8 = ({ setStep, setFormData, formData }) => {
         <textarea
           name="esterni"
           required
+          value={esterni}
           onChange={(e) => setEsterni(e.target.value)}
           className="form-control"
           placeholder="Non ha graffi, ha una botta..."
         ></textarea>
       </div>
       <div className="step-buttons">
-        <button type="button" onClick={() => setStep(7)}>
+        <button type="button" onClick={handleReverseAnimation}>
           Torna indietro
         </button>
         <button type="submit" disabled={esterni.length < 5}>

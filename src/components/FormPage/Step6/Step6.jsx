@@ -2,13 +2,19 @@ import "./Step6.css";
 import { useState } from "react";
 import { motion } from "framer-motion";
 
-const Step6 = ({ setStep, setFormData, formData }) => {
+const Step6 = ({
+  setStep,
+  setFormData,
+  formData,
+  handleReverseAnimation,
+  reverseAnimation,
+}) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setFormData({ ...formData, Stato2: selected });
     setStep(7);
   };
-  const [selected, setSelected] = useState(null);
+  const [selected, setSelected] = useState(formData.Stato2 || null);
 
   return (
     <motion.form
@@ -17,7 +23,7 @@ const Step6 = ({ setStep, setFormData, formData }) => {
       action="POST"
       role="form"
       encType="multipart/form-data"
-      initial={{ y: "100%" }}
+      initial={{ y: reverseAnimation ? "-100%" : "100%" }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
     >
@@ -37,14 +43,15 @@ const Step6 = ({ setStep, setFormData, formData }) => {
               name="stato-2"
               value={field.value}
               required
-              onChange={(e) => setSelected(e.target.value)}
+              onChange={() => setSelected(field.value)}
+              checked={selected === field.value}
             />
             {field.label}
           </label>
         ))}
       </div>
       <div className="step-buttons">
-        <button type="button" onClick={() => setStep(5)}>
+        <button type="button" onClick={handleReverseAnimation}>
           Torna indietro
         </button>
         <button type="submit" disabled={!selected}>

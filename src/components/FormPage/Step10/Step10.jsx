@@ -5,16 +5,16 @@ import axios from "axios";
 import Loader from "../../Loader/Loader";
 import { motion } from "framer-motion";
 
-const Step10 = ({ setStep, formData, setFormData }) => {
+const Step10 = ({ setStep, formData, setFormData, handleReverseAnimation }) => {
   const navigate = useNavigate();
   const [phoneError, setPhoneError] = useState(false);
   const [emailError, setEmailError] = useState(false);
   const [loading, setLoading] = useState(false);
   const [stepData, setStepData] = useState({
-    Nome: "",
-    Cognome: "",
-    Telefono: "",
-    Email: "",
+    Nome: formData.Nome || "",
+    Cognome: formData.Cognome || "",
+    Telefono: formData.Telefono || "",
+    Email: formData.Email || "",
   });
 
   const handleSubmit = async (e) => {
@@ -140,7 +140,7 @@ const Step10 = ({ setStep, formData, setFormData }) => {
       )}
 
       <div className="step-buttons">
-        <button type="button" onClick={() => setStep(9)}>
+        <button type="button" onClick={handleReverseAnimation}>
           Torna indietro
         </button>
         <button

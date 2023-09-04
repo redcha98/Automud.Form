@@ -4,14 +4,20 @@ import axios from "axios";
 import { Step3Data } from "./Step3Data";
 import { motion } from "framer-motion";
 
-const Step3 = ({ setStep, formData, setFormData, marche }) => {
+const Step3 = ({
+  setStep,
+  formData,
+  setFormData,
+  marche,
+  reverseAnimation,
+}) => {
   const [stepData, setStepData] = useState({
-    Anno: "",
-    Marca: "",
-    Modello: "",
-    Cilindrata: "",
-    Alimentazione: "",
-    Cambio: "",
+    Anno: formData.Anno || "",
+    Marca: formData.Marca || "",
+    Modello: formData.Modello || "",
+    Cilindrata: formData.Cilindrata || "",
+    Alimentazione: formData.Alimentazione || "",
+    Cambio: formData.Cambio || "",
   });
 
   const [modelli, setModelli] = useState([]);
@@ -51,7 +57,7 @@ const Step3 = ({ setStep, formData, setFormData, marche }) => {
       action="POST"
       role="form"
       encType="multipart/form-data"
-      initial={{ y: "100%" }}
+      initial={{ y: reverseAnimation ? "-100%" : "100%" }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
     >
@@ -72,6 +78,7 @@ const Step3 = ({ setStep, formData, setFormData, marche }) => {
               id={data.name}
               name={data.name}
               required
+              value={stepData[data.name]}
               onChange={handleChange}
             >
               <option value="" disabled selected>
