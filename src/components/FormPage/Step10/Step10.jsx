@@ -62,7 +62,8 @@ const Step10 = ({ setStep, formData, setFormData, handleGoBack }) => {
     apiFormData.append("engineCondition", formData.Stato2);
     apiFormData.append("interiorConditions", formData.Interni);
     apiFormData.append("exteriorConditions", formData.Esterni);
-    apiFormData.append("cap", formData.CAP);
+    apiFormData.append("cap", formData.CAP.cap);
+    apiFormData.append("city", formData.CAP.comune);    
     apiFormData.append("firstName", stepData.Nome);
     apiFormData.append("lastName", stepData.Cognome);
     apiFormData.append("email", stepData.Email);

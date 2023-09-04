@@ -19,7 +19,10 @@ const Step1 = ({ setStep, formData, setFormData, reverseAnimation }) => {
         `https://automud-api-cap.azurewebsites.net/api/cap/${cap}`
       );
       if (res.data.IsReachable) {
-        setFormData({ ...formData, CAP: cap });
+        let comune = res.data.Comuni[0].Comune;
+        let provincia = res.data.Comuni[0].Provincia;
+        comune = `${comune} (${provincia})`;
+        setFormData({ ...formData, CAP: { comune, cap } });
         setStep(2);
       } else {
         navigate("/unreachable");
