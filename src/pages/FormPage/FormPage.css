@@ -144,7 +144,7 @@ input[type="radio"] {
 .loader {
   width: 70px;
   height: 70px;
-  margin: 32px auto 0;
+  margin: 20px auto;
   border: solid 5px #6a0fff;
   border-radius: 50%;
   border-right-color: transparent;
@@ -227,7 +227,11 @@ input[type="number"]::-webkit-outer-spin-button {
     padding: 80px 30px;
     min-width: 100%;
     height: 100%;
-    gap: 0.5rem;
+    gap: 0.8rem;
+  }
+
+  .step1 button, .step2 button {
+    margin-top: 1rem;
   }
 
   .form-header {
