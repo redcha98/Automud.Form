@@ -30,8 +30,17 @@
 }
 
 @media (max-width: 768px) {
+
+  .step3 {
+    gap: 0.5rem;
+  }
+
   .step3 > .form-group > .form-control {
     padding: 0.5rem 1rem;
+  }
+
+  .step3 > .form-group {
+    gap: 0.5rem;
   }
 
   .step3 button {
