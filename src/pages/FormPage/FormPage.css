@@ -35,6 +35,7 @@ form {
   flex-direction: column;
   align-items: center;
   text-align: center;
+  gap: 1.5rem;
 }
 
 .form-header {
@@ -81,6 +82,7 @@ form {
   font-size: 14px;
   font-weight: 500;
   font-family: inherit;
+  transition: all 0.3s ease;
 }
 
 .form-control.error {
@@ -113,7 +115,6 @@ form > button {
   font-size: 15px;
   color: #ffffff;
   transition: all 0.3s ease;
-  margin-top: 2rem;
 }
 
 form > button:hover {
@@ -132,7 +133,7 @@ form > button:disabled {
   color: #ff0000;
   font-size: 0.8rem;
   font-weight: 500;
-  margin: 2rem 0;
+  margin: 0.5rem 0;
 }
 
 input[type="radio"] {
@@ -191,35 +192,6 @@ input[type="number"]::-webkit-outer-spin-button {
   }
 }
 
-@media (max-width: 450px) {
-  form {
-    justify-content: center;
-    padding: 80px 30px 30px;
-    min-width: 100%;
-    height: 100%;
-  }
-
-  .form-header {
-    margin-top: 2rem;
-  }
-  .form-header > h1 {
-    font-size: 1.5rem;
-  }
-
-  .form-header > h2 {
-    font-size: 0.8rem;
-    margin: 1.5rem 0;
-  }
-
-  .form-group > .form-control {
-    width: 100%;
-  }
-
-  .form-error {
-    margin: 1rem 0;
-  }
-}
-
 @media (max-width: 1280px) {
   .form-main {
     padding: 1.5rem 0;
@@ -248,7 +220,35 @@ input[type="number"]::-webkit-outer-spin-button {
     margin: 1.5rem 0;
   }
 
+
+}
+
+@media (max-width: 450px) {
+  form {
+    justify-content: flex-start;
+    padding: 80px 20px;
+    min-width: 100%;
+    height: 100%;
+    gap: 1rem;
+  }
+
+  .form-header {
+    margin-top: 1rem;
+  }
+  .form-header > h1 {
+    font-size: 1.2rem;
+  }
+
+  .form-header > h2 {
+    font-size: 0.8rem;
+    margin: 1rem 0;
+  }
+
   .form-group > .form-control {
-    padding: 0.5rem 1rem;
+    width: 100%;
+  }
+
+  .form-error {
+    margin: 1rem 0;
   }
 }

@@ -23,15 +23,13 @@ const Step10 = ({ setStep, formData, setFormData, handleGoBack }) => {
 
     setFormData({ ...stepData, ...formData });
 
-    setPhoneError(false);
-    setEmailError(false);
+
 
     if (
       !/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(stepData.Email)
     ) {
       setEmailError(true);
       document.getElementById("Email").classList.add("error");
-      return;
     } else {
       setEmailError(false);
       document.getElementById("Email").classList.remove("error");
@@ -40,46 +38,54 @@ const Step10 = ({ setStep, formData, setFormData, handleGoBack }) => {
     if (!/^3[0-9]{9}$/.test(stepData.Telefono)) {
       setPhoneError(true);
       document.getElementById("Telefono").classList.add("error");
-      return;
     } else {
       setPhoneError(false);
       document.getElementById("Telefono").classList.remove("error");
     }
-    setLoading(true);
 
-    setFormData({ ...formData, ...stepData });
+    if (emailError || phoneError) {
+      return;
 
-    let apiFormData = new FormData();
-    apiFormData.append("licensePlate", formData.Targa);
-    apiFormData.append("km", formData.Km);
-    apiFormData.append("make", formData.Marca);
-    apiFormData.append("model", formData.Modello);
-    apiFormData.append("registrationYear", formData.Anno);
-    apiFormData.append("engineSize", formData.Cilindrata);
-    apiFormData.append("fuelType", formData.Alimentazione);
-    apiFormData.append("transmissionType", formData.Cambio);
-    apiFormData.append("carCondition", formData.Stato);
-    apiFormData.append("engineCondition", formData.Stato2);
-    apiFormData.append("interiorConditions", formData.Interni);
-    apiFormData.append("exteriorConditions", formData.Esterni);
-    apiFormData.append("cap", formData.CAP.cap);
-    apiFormData.append("city", formData.CAP.comune);    
-    apiFormData.append("firstName", stepData.Nome);
-    apiFormData.append("lastName", stepData.Cognome);
-    apiFormData.append("email", stepData.Email);
-    apiFormData.append("phone", stepData.Telefono);
+    } else {
+      setLoading(true);
 
-    for (let i = 0; i < formData.Foto.length; i++) {
-      apiFormData.append("files", formData.Foto[i], formData.Foto[i].name);
+      setFormData({ ...formData, ...stepData });
+
+      let apiFormData = new FormData();
+      apiFormData.append("licensePlate", formData.Targa);
+      apiFormData.append("km", formData.Km);
+      apiFormData.append("make", formData.Marca);
+      apiFormData.append("model", formData.Modello);
+      apiFormData.append("registrationYear", formData.Anno);
+      apiFormData.append("engineSize", formData.Cilindrata);
+      apiFormData.append("fuelType", formData.Alimentazione);
+      apiFormData.append("transmissionType", formData.Cambio);
+      apiFormData.append("carCondition", formData.Stato);
+      apiFormData.append("engineCondition", formData.Stato2);
+      apiFormData.append("interiorConditions", formData.Interni);
+      apiFormData.append("exteriorConditions", formData.Esterni);
+      apiFormData.append("cap", formData.CAP.cap);
+      apiFormData.append("city", formData.CAP.comune);
+      apiFormData.append("firstName", stepData.Nome);
+      apiFormData.append("lastName", stepData.Cognome);
+      apiFormData.append("email", stepData.Email);
+      apiFormData.append("phone", stepData.Telefono);
+
+      for (let i = 0; i < formData.Foto.length; i++) {
+        apiFormData.append("files", formData.Foto[i], formData.Foto[i].name);
+      }
+
+      // await axios
+      //   .post(
+      //     "https://automud-request.azurewebsites.net/api/request",
+      //     apiFormData
+      //   )
+      // .then((res) => {
+      // console.log(res);
+      // navigate("/success");
+      // })
+      // .catch((err) => console.log(err));
     }
-
-    await axios
-      .post("https://automud-request.azurewebsites.net/api/request", apiFormData)
-      .then((res) => {
-        console.log(res);
-        navigate("/success");
-      })
-      .catch((err) => console.log(err));
   };
 
   const handleChange = (e) => {

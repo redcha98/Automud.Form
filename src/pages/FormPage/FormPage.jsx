@@ -14,14 +14,16 @@ import ProgressBar from "../../components/ProgressBar/ProgressBar";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { AnimatePresence } from "framer-motion";
-import { useParams, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function FormPage() {
   const [step, setStep] = useState(1);
   const [marche, setMarche] = useState([]);
   const [formData, setFormData] = useState({});
   const [reverseAnimation, setReverseAnimation] = useState(false);
-  const { cap } = useParams();
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const cap = searchParams.get("cap");
   const navigate = useNavigate();
   const handleGoBack = (isRestart) => {
     setReverseAnimation(true);
