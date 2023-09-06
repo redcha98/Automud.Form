@@ -16,6 +16,16 @@ const Step10 = ({ setStep, formData, setFormData, handleGoBack }) => {
     Telefono: "",
     Email: "",
   });
+  const emaiLRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+  const phoneRegex = /^3[0-9]{9}$/;
+
+  const validateEmail = (email) => {
+    return emaiLRegex.test(email);
+  };
+
+  const validatePhone = (phone) => {
+    return phoneRegex.test(phone);
+  };
 
   const handleSubmit = async (e) => {
     // Fare qui chiamata POST all'API
@@ -23,28 +33,25 @@ const Step10 = ({ setStep, formData, setFormData, handleGoBack }) => {
 
     setFormData({ ...stepData, ...formData });
 
-    setPhoneError(false);
-    setEmailError(false);
-
-    if (
-      !/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(stepData.Email)
-    ) {
+    if (!validateEmail(stepData.Email)) {
       setEmailError(true);
       document.getElementById("Email").classList.add("error");
-      return;
     } else {
       setEmailError(false);
       document.getElementById("Email").classList.remove("error");
     }
 
-    if (!/^3[0-9]{9}$/.test(stepData.Telefono)) {
+    if (!validatePhone(stepData.Telefono)) {
       setPhoneError(true);
       document.getElementById("Telefono").classList.add("error");
-      return;
     } else {
       setPhoneError(false);
       document.getElementById("Telefono").classList.remove("error");
     }
+
+    if (!validatePhone(stepData.Telefono) || !validateEmail(stepData.Email))
+      return;
+
     setLoading(true);
 
     setFormData({ ...formData, ...stepData });
@@ -63,7 +70,7 @@ const Step10 = ({ setStep, formData, setFormData, handleGoBack }) => {
     apiFormData.append("interiorConditions", formData.Interni);
     apiFormData.append("exteriorConditions", formData.Esterni);
     apiFormData.append("cap", formData.CAP.cap);
-    apiFormData.append("city", formData.CAP.comune);    
+    apiFormData.append("city", formData.CAP.comune);
     apiFormData.append("firstName", stepData.Nome);
     apiFormData.append("lastName", stepData.Cognome);
     apiFormData.append("email", stepData.Email);
@@ -74,7 +81,10 @@ const Step10 = ({ setStep, formData, setFormData, handleGoBack }) => {
     }
 
     await axios
-      .post("https://automud-request.azurewebsites.net/api/request", apiFormData)
+      .post(
+        "https://automud-request.azurewebsites.net/api/request",
+        apiFormData
+      )
       .then((res) => {
         console.log(res);
         navigate("/success");

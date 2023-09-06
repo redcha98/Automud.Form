@@ -70,11 +70,13 @@ const Step3 = ({
           return (
             <select
               key={index}
-              className={
-                data.name === "Modello"
-                  ? "form-control disabled"
-                  : "form-control"
-              }
+              className={`form-control ${
+                stepData[data.name] === "" ? "" : "selected"
+              } ${
+                data.name === "Modello" && modelli.length === 0
+                  ? "disabled"
+                  : ""
+              }`}
               id={data.name}
               name={data.name}
               required

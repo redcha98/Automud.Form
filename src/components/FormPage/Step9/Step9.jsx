@@ -2,6 +2,7 @@ import "./Step9.css";
 import uploadIcon from "../../../assets/images/UploadIcon.svg";
 import { useState } from "react";
 import Dropzone from "react-dropzone";
+import { useDropzone } from "react-dropzone";
 import Compressor from "compressorjs";
 import { motion } from "framer-motion";
 
@@ -46,6 +47,18 @@ const Step9 = ({
     });
   }
 
+  const { getRootProps, getInputProps } = useDropzone({
+    onDropAccepted: (acceptedFiles) => {
+      setFoto(acceptedFiles);
+      setError(false);
+    },
+    onDropRejected: () => setError(true),
+    multiple: true,
+    accept: {
+      "image/*": [".jpeg", ".png"],
+    },
+  });
+
   return (
     <motion.form
       className="step9"
@@ -65,25 +78,13 @@ const Step9 = ({
         </h2>
       </header>
       <div className="form-group">
-        <Dropzone
-          onDropAccepted={(acceptedFiles) => {
-            setFoto(acceptedFiles);
-            setError(false);
-          }}
-          onDropRejected={() => setError(true)}
-          multiple={true}
-          accept={"image/jpeg, image/png"}
-        >
-          {({ getRootProps, getInputProps }) => (
-            <section>
-              <div {...getRootProps()} className="dropzone">
-                <input {...getInputProps()} />
-                <p>Foto della tua auto</p>
-                <img src={uploadIcon} alt="upload icon" />
-              </div>
-            </section>
-          )}
-        </Dropzone>
+        <section>
+          <div {...getRootProps()} className="dropzone">
+            <input {...getInputProps()} />
+            <p>Foto della tua auto</p>
+            <img src={uploadIcon} alt="upload icon" />
+          </div>
+        </section>
         <div className="number_uploaded">
           {!error && (
             <p>
