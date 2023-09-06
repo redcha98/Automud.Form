@@ -21,6 +21,8 @@
   background-repeat: no-repeat;
   background-size: 14px 14px;
   background-position: calc(100% - 16px);
+  background-color: #fff;
+  color: #000000b2;
 }
 
 .step3 > .form-group > .form-control.disabled {
@@ -29,8 +31,17 @@
   opacity: 0.5;
 }
 
-@media (max-width: 768px) {
+.step3 > .form-group > .form-control.selected {
+  background-color: #9452ff;
+  color: #fff;
+}
 
+.step3 > .form-group > .form-control.selected option {
+  background-color: #fff;
+  color: #000000b2;
+}
+
+@media (max-width: 768px) {
   .step3 {
     gap: 0.5rem;
   }
