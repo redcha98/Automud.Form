@@ -69,15 +69,15 @@ const Step10 = ({ setStep, formData, setFormData, handleGoBack }) => {
     apiFormData.append("email", stepData.Email);
     apiFormData.append("phone", stepData.Telefono);
 
-    for (let i = 0; i < formData.Foto.length; i++) {
-      apiFormData.append("files", formData.Foto[i], formData.Foto[i].name);
-    }
-
     await axios
-      .post("https://automud-request.azurewebsites.net/api/request", apiFormData)
+      .post("http://localhost:7071/api/request", apiFormData)
       .then((res) => {
         console.log(res);
-        navigate("/success");
+        let requestId = res.data.Id;
+        console.log(requestId);
+        let newFormData = { ...formData, RequestId: requestId }
+        setFormData(newFormData);
+        setStep(9);
       })
       .catch((err) => console.log(err));
   };

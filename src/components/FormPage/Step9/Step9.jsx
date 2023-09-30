@@ -4,6 +4,7 @@ import { useState } from "react";
 import Dropzone from "react-dropzone";
 import Compressor from "compressorjs";
 import { motion } from "framer-motion";
+import axios from "axios";
 
 const Step9 = ({
   setStep,
@@ -17,10 +18,23 @@ const Step9 = ({
   const handleSubmit = async (e) => {
     e.preventDefault();
     await Promise.all(foto.map(compressImage))
-      .then((compressedFiles) => {
+      .then(async (compressedFiles) => {
         let fotoCompresse = createFileList(compressedFiles);
         setFormData({ ...formData, Foto: fotoCompresse.files });
-        setStep(10);
+
+        let apiFormData = new FormData();
+        apiFormData.append("requestId", formData.RequestId)
+        for (let i = 0; i < formData.Foto.length; i++) {
+          apiFormData.append("files", formData.Foto[i], formData.Foto[i].name);
+        }
+
+        await axios
+          .post("http://localhost:7071/api/requestPhotos", apiFormData)
+          .then((res) => {
+            console.log(res);
+            navigate("/success");
+          })
+          .catch((err) => console.log(err));
       })
       .catch((error) => {
         setError(true);
