@@ -1,90 +1,64 @@
 import "./Step10.css";
+import uploadIcon from "../../../assets/images/UploadIcon.svg";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import Loader from "../../Loader/Loader";
+import Dropzone from "react-dropzone";
+import Compressor from "compressorjs";
 import { motion } from "framer-motion";
+import axios from "axios";
 
-const Step10 = ({ setStep, formData, setFormData, handleGoBack }) => {
-  const navigate = useNavigate();
-  const [phoneError, setPhoneError] = useState(false);
-  const [emailError, setEmailError] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [stepData, setStepData] = useState({
-    Nome: "",
-    Cognome: "",
-    Telefono: "",
-    Email: "",
-  });
-
+const Step10 = ({
+  setStep,
+  setFormData,
+  formData,
+  handleGoBack,
+  reverseAnimation,
+}) => {
+  const [foto, setFoto] = useState([]);
+  const [error, setError] = useState(false);
   const handleSubmit = async (e) => {
-    // Fare qui chiamata POST all'API
     e.preventDefault();
+    await Promise.all(foto.map(compressImage))
+      .then(async (compressedFiles) => {
+        let fotoCompresse = createFileList(compressedFiles);
+        setFormData({ ...formData, Foto: fotoCompresse.files });
 
-    setFormData({ ...stepData, ...formData });
+        let apiFormData = new FormData();
+        apiFormData.append("requestId", formData.RequestId)
+        for (let i = 0; i < formData.Foto.length; i++) {
+          apiFormData.append("files", formData.Foto[i], formData.Foto[i].name);
+        }
 
-    setPhoneError(false);
-    setEmailError(false);
-
-    if (
-      !/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(stepData.Email)
-    ) {
-      setEmailError(true);
-      document.getElementById("Email").classList.add("error");
-      return;
-    } else {
-      setEmailError(false);
-      document.getElementById("Email").classList.remove("error");
-    }
-
-    if (!/^3[0-9]{9}$/.test(stepData.Telefono)) {
-      setPhoneError(true);
-      document.getElementById("Telefono").classList.add("error");
-      return;
-    } else {
-      setPhoneError(false);
-      document.getElementById("Telefono").classList.remove("error");
-    }
-    setLoading(true);
-
-    setFormData({ ...formData, ...stepData });
-
-    let apiFormData = new FormData();
-    apiFormData.append("licensePlate", formData.Targa);
-    apiFormData.append("km", formData.Km);
-    apiFormData.append("make", formData.Marca);
-    apiFormData.append("model", formData.Modello);
-    apiFormData.append("registrationYear", formData.Anno);
-    apiFormData.append("engineSize", formData.Cilindrata);
-    apiFormData.append("fuelType", formData.Alimentazione);
-    apiFormData.append("transmissionType", formData.Cambio);
-    apiFormData.append("carCondition", formData.Stato);
-    apiFormData.append("engineCondition", formData.Stato2);
-    apiFormData.append("interiorConditions", formData.Interni);
-    apiFormData.append("exteriorConditions", formData.Esterni);
-    apiFormData.append("cap", formData.CAP.cap);
-    apiFormData.append("city", formData.CAP.comune);    
-    apiFormData.append("firstName", stepData.Nome);
-    apiFormData.append("lastName", stepData.Cognome);
-    apiFormData.append("email", stepData.Email);
-    apiFormData.append("phone", stepData.Telefono);
-
-    await axios
-      .post("http://localhost:7071/api/request", apiFormData)
-      .then((res) => {
-        console.log(res);
-        let requestId = res.data.Id;
-        console.log(requestId);
-        let newFormData = { ...formData, RequestId: requestId }
-        setFormData(newFormData);
-        setStep(9);
+        await axios
+          .post("http://localhost:7071/api/requestPhotos", apiFormData)
+          .then((res) => {
+            console.log(res);
+            navigate("/success");
+          })
+          .catch((err) => console.log(err));
       })
-      .catch((err) => console.log(err));
-  };
+      .catch((error) => {
+        setError(true);
+      });
 
-  const handleChange = (e) => {
-    setStepData({ ...stepData, [e.target.name]: e.target.value });
+    function createFileList(compressedFiles) {
+      let list = new DataTransfer();
+      for (let i = 0; i < compressedFiles.length; i++) {
+        list.items.add(compressedFiles[i]);
+      }
+      return list;
+    }
   };
+  function compressImage(file) {
+    return new Promise((resolve, reject) => {
+      new Compressor(file, {
+        quality: 0.25,
+        success: (result) => {
+          resolve(new File([result], file.name, { type: result.type }));
+        },
+        error: (error) => reject(error),
+      });
+    });
+  }
 
   return (
     <motion.form
@@ -93,62 +67,57 @@ const Step10 = ({ setStep, formData, setFormData, handleGoBack }) => {
       action="POST"
       role="form"
       encType="multipart/form-data"
-      initial={{ y: "100%" }}
+      initial={{ y: reverseAnimation ? "-100%" : "100%" }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
     >
       <header className="form-header">
-        <h1>Con chi abbiamo il piacere di parlare?</h1>
+        <h1>Mostraci la tua auto con qualche foto...</h1>
         <h2>
-          Solo alcune informazioni su di te, prima di ricevere la tua
-          valutazione.
+          Allega alcune foto dell’auto in modo da poter ricevere una valutazione
+          accurata.
         </h2>
       </header>
-      {loading ? (
-        <Loader />
-      ) : (
-        <div className="form-group">
-          {[
-            { label: "Nome", type: "text" },
-            { label: "Cognome", type: "text" },
-            { label: "Telefono", type: "tel" },
-            { label: "Email", type: "text" },
-          ].map((input) => (
-            <input
-              key={input.label}
-              type={input.type}
-              name={input.label}
-              id={input.label}
-              placeholder={input.label}
-              className="form-control"
-              value={stepData[input.label]}
-              onChange={handleChange}
-            />
-          ))}
+      <div className="form-group">
+        <Dropzone
+          onDropAccepted={(acceptedFiles) => {
+            setFoto(acceptedFiles);
+            setError(false);
+          }}
+          onDropRejected={() => setError(true)}
+          multiple={true}
+          accept={"image/jpeg, image/png"}
+        >
+          {({ getRootProps, getInputProps }) => (
+            <section>
+              <div {...getRootProps()} className="dropzone">
+                <input {...getInputProps()} />
+                <p>Foto della tua auto</p>
+                <img src={uploadIcon} alt="upload icon" />
+              </div>
+            </section>
+          )}
+        </Dropzone>
+        <div className="number_uploaded">
+          {!error && (
+            <p>
+              {foto.length}{" "}
+              {foto.length === 1 ? "foto caricata" : "foto caricate"}
+            </p>
+          )}
+          {error && (
+            <span className="form-error">
+              Il formato delle foto non è corretto. Riprova con un’altra foto.
+            </span>
+          )}
         </div>
-      )}
-
-      {phoneError && !emailError && (
-        <span className="form-error">
-          Inserisci un numero di telefono valido
-        </span>
-      )}
-
-      {emailError && (
-        <span className="form-error">
-          Inserisci un indirizzo email o numero di telefono valido
-        </span>
-      )}
-
+      </div>
       <div className="step-buttons">
         <button type="button" onClick={() => handleGoBack(false)}>
           Torna indietro
         </button>
-        <button
-          type="submit"
-          disabled={Object.values(stepData).some((value) => value === "")}
-        >
-          Richiedi valutazione
+        <button type="submit" disabled={foto.length < 1 || error}>
+          Prossimo step
         </button>
       </div>
     </motion.form>

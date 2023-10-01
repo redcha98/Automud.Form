@@ -15,7 +15,7 @@ const Step8 = ({
     //Inserire qui la logica per usare l'API
     e.preventDefault();
     setFormData({ ...formData, Esterni: esterni });
-    setStep(10);
+    setStep(9);
   };
 
   return (
