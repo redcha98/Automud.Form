@@ -116,3 +116,10 @@
     justify-content: center;
   }
 }
+
+@media (max-width: 450px) {
+  .unreachable-container {
+    padding: 80px 20px;
+    justify-content: flex-start;
+  }
+}
