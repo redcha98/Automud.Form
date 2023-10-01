@@ -10,11 +10,6 @@ const Step2 = ({ setStep, formData, setFormData }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     // Fare qui chiamata POST all'API
-    if (!/^[a-zA-Z]{2}[0-9]{3}[a-zA-Z]{2}$/.test(targa)) {
-      setError(true);
-      document.getElementById("targa").classList.add("error");
-      return;
-    }
 
     setFormData({ ...formData, Targa: targa });
     setStep(3);
@@ -43,16 +38,27 @@ const Step2 = ({ setStep, formData, setFormData }) => {
           name="targa"
           required
           value={targa}
-          onInput={(e) => {
+          onChange={(e) => {
             if (e.target.value.length > 7) {
               e.target.value = e.target.value.slice(0, 7);
             }
-            setTarga(e.target.value);
+            if (e.target.value.length === 7) {
+              if (!/^[a-zA-Z]{2}[0-9]{3}[a-zA-Z]{2}$/.test(e.target.value)) {
+                setError(true);
+                document.getElementById("targa").classList.add("error");
+              } else {
+                setError(false);
+                document.getElementById("targa").classList.remove("error");
+              }
+            }
+            setTarga(e.target.value.toUpperCase());
           }}
         />
       </div>
       {error && <span className="form-error">Inserisci una targa valida</span>}
-      <button disabled={targa.length < 7}>Prossimo step</button>
+      <button disabled={error || targa.length < 7} type="submit">
+        Prossimo step
+      </button>
     </motion.form>
   );
 };

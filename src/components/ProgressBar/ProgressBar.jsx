@@ -30,6 +30,12 @@ const ProgressBar = ({ step, handleGoBack }) => {
         </div>
       </div>
       <div className="progress-bar_mobile">
+        {step < 3 && (
+          <button className="progress-bar_whatsapp_btn">
+            <img src={WhatsappIcon} alt="Whatsapp Icon" />
+            <span>Valuta con Whatsapp</span>
+          </button>
+        )}
         <p>{step} di 10</p>
       </div>
     </>
