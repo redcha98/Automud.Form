@@ -70,7 +70,7 @@ const Step9 = ({ setStep, formData, setFormData, handleGoBack }) => {
     apiFormData.append("phone", stepData.Telefono);
 
     await axios
-      .post("http://localhost:7071/api/request", apiFormData)
+      .post("https://automud-request.azurewebsites.net/api/request", apiFormData)
       .then((res) => {
         console.log(res);
         let requestId = res.data.Id;
@@ -148,7 +148,7 @@ const Step9 = ({ setStep, formData, setFormData, handleGoBack }) => {
           type="submit"
           disabled={Object.values(stepData).some((value) => value === "")}
         >
-          Richiedi valutazione
+          Prossimo step
         </button>
       </div>
     </motion.form>

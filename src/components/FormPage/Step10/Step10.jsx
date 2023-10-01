@@ -2,6 +2,7 @@ import "./Step10.css";
 import uploadIcon from "../../../assets/images/UploadIcon.svg";
 import { useState } from "react";
 import Dropzone from "react-dropzone";
+import { useNavigate } from "react-router-dom";
 import Compressor from "compressorjs";
 import { motion } from "framer-motion";
 import axios from "axios";
@@ -13,6 +14,7 @@ const Step10 = ({
   handleGoBack,
   reverseAnimation,
 }) => {
+  const navigate = useNavigate();
   const [foto, setFoto] = useState([]);
   const [error, setError] = useState(false);
   const handleSubmit = async (e) => {
@@ -29,7 +31,7 @@ const Step10 = ({
         }
 
         await axios
-          .post("http://localhost:7071/api/requestPhotos", apiFormData)
+          .post("https://automud-request.azurewebsites.net/api/requestPhotos", apiFormData)
           .then((res) => {
             console.log(res);
             navigate("/success");
@@ -117,7 +119,7 @@ const Step10 = ({
           Torna indietro
         </button>
         <button type="submit" disabled={foto.length < 1 || error}>
-          Prossimo step
+          Richiedi valutazione
         </button>
       </div>
     </motion.form>
